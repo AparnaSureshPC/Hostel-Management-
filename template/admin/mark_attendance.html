@@ -1,0 +1,26 @@
+{% extends "admin_page.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card card_style ">
+    <div class="card-header bg-primary" >
+        <strong class="card-title">Add Attendance</strong>
+    </div>
+<div class="card-body">
+    <div class="card-title">
+        <h3 class="text-center"></h3>
+    </div>
+    <form method='post' novalidate="novalidate">
+    {% csrf_token %}
+        <div class="form-group">
+            <label>Attendance</label>
+       <div>
+            <input type="radio" name="attendance" value="Present">Present<br>
+           <input type="radio" name="attendance" value="Absent">Absent<br>
+       </div>
+            </div>
+   <button class='submit_button' type="submit">Add</button>
+</form>
+</div>
+</div>
+{% endblock %}
+.

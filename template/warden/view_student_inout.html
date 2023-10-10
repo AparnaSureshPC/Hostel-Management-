@@ -1,0 +1,27 @@
+{% extends 'warden_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+ <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">IN/OUT</p></div>
+<table class="table table-hover">
+  <thead>
+  <tr class="table-light">
+    <th>SL NO</th>
+    <th>DATE</th>
+    <th>VIEW</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  {% for i in dates %}
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i}}</td>
+    <td>
+      <a href="{% url 'date_based_inout' i %}">view</a>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

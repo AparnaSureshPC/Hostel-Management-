@@ -1,0 +1,55 @@
+{% extends 'admin_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+
+}, 4000);
+
+</script>
+
+     <div >
+         {% for i in messages %}
+         <div class="alert alert-info" role="alert">
+             {{i}}
+         </div>
+         {% endfor %}
+     </div>
+
+
+        <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Reviews</p></div>
+<table class="table table-hover" style="font-size:15px">
+  <thead>
+  <tr class="table-light">
+  <th>SL NO</th>
+    <th>DATE</th>
+    <th>NAME</th>
+    <th>COMPLAINTS</th>
+    <th>REPLY</th>
+
+  </tr>
+  </thead>
+    <tbody>
+  {% for i in data %}
+
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.date}}</td>
+    <td>{{i.user}}</td>
+    <td>{{i.complaint}}</td>
+    <td>{% if i.reply == None %}
+    <a href="{% url 'complaint_reply' i.id %}" >Reply Now</a>
+      {% else %}
+      {{i.reply}}
+      {% endif %}
+    </td>
+  </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'admin_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+
+}, 4000);
+
+</script>
+ <div class="column">
+     <div class="col-lg-12">
+         {% for i in messages %}
+         <div class="alert alert-info" role="alert" id="alert">
+             {{i}}
+         </div>
+         {% endfor %}
+     </div>
+
+ </div>
+<div class="card-header bg-primary" >
+    <strong class="card-title" style="color:white">Student Registration</strong>
+ <div class="card-body">
+     <table  class="table table-hover" style="font-size:15px">
+    <thead>
+    <tr class="table-light">
+        <th>SL NO</th>
+        <th>NAME</th>
+        <th>COURSE</th>
+        <th>ADDRESS</th>
+        <th>EMAIL</th>
+        <th>PHONE NO</th>
+        <th>PHOTO</th>
+        <th>APPROVE</th>
+        <th>DELETE</th>
+    </tr>
+         </thead>
+    <tbody>
+    {% for i in student %}
+    <tr class="table-secondary">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.course}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone_no}}</td>
+        <td><img src="{{i.photo.url}}"></td>
+        <td>
+            {% if i.approval_status == 0 %}
+            <a class="btn-sm btn btn-secondary " href="{% url 'approve_student' i.user_id  %}">Approve</a>
+            {% elif i.approval_status == 1 %}
+            <button class="btn-sm btn btn-success ">Approved</button>
+            {% else %}
+            <button class="btn-sm btn btn-warning ">Rejected</button>
+            {% endif %}
+        </td>
+         <td>
+            <form action="{% url 'reject_student' i.user_id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    <tbody>
+</table>
+ </div>
+</div>
+{% endblock %}

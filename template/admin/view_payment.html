@@ -1,0 +1,53 @@
+{% extends 'admin_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% for i in messages %}
+<div class="alert alert-info" id="alert">
+    {{i}}
+</div>
+{% endfor %}
+        <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Payments</p></div>
+<table class="table table-hover" style="font-size:15px">
+  <thead>
+  <tr class="table-light">
+  <th>SL NO</th>
+    <th>Student</th>
+    <th>Bill date</th>
+    <th>Bill no</th>
+    <th>Bill start date</th>
+    <th>Bill end date</th>
+    <th>Bill due date</th>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Bill</th>
+    <th>Status</th>
+
+  </tr>
+  </thead>
+  {% for i in payments %}
+  <tbody>
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.student}}</td>
+    <td>{{i.bill_date}}</td>
+    <td>{{i.bill_no}}</td>
+    <td>{{i.bill_start_date}}</td>
+    <td>{{i.bill_end_date}}</td>
+    <td>{{i.bill_due_date}}</td>
+    <td>{{i.amount}}</td>
+    <td>{{i.status}}</td>
+    <td><a href="{% url 'payment_delete' i.id %}">delete</a></td>
+    <td><a href="">download</a></td>
+  </tr>
+  </tbody>
+  {% endfor %}
+</table>
+<script>
+  window.setTimeout(function(){
+       $('#alert').fadeTo(500,0).slideUp(500,function(){
+           $(this).remove();
+       });
+  },3000);
+</script>
+{% endblock %}

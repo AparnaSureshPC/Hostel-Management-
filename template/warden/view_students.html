@@ -1,0 +1,35 @@
+{% extends 'warden_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card-header bg-primary" >
+    <strong class="card-title" style="color:white">Student Registration</strong>
+ <div class="card-body">
+     <table  class="table table-hover" style="font-size:15px">
+    <thead>
+    <tr class="table-light">
+        <th>SL NO</th>
+        <th>NAME</th>
+        <th>COURSE</th>
+        <th>ADDRESS</th>
+        <th>EMAIL</th>
+        <th>PHONE NO</th>
+        <th>PHOTO</th>
+    </tr>
+         </thead>
+    <tbody>
+    {% for i in students %}
+    <tr class="table-secondary">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.course}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone_no}}</td>
+        <td><img src="{{i.photo.url}}"></td>
+    </tr>
+    {% endfor %}
+    <tbody>
+</table>
+ </div>
+</div>
+{% endblock %}

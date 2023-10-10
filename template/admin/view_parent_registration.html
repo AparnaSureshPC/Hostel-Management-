@@ -1,0 +1,72 @@
+{% extends 'admin_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+
+}, 4000);
+
+</script>
+ <div class="column">
+     <div class="col-lg-12">
+         {% for i in messages %}
+         <div class="alert alert-info" role="alert">
+             {{i}}
+         </div>
+         {% endfor %}
+     </div>
+
+ </div>
+<div class="card-header bg-primary" >
+    <strong class="card-title" style="color:white">Parent Registration</strong>
+ <div class="card-body">
+     <table class="table">
+    <thead>
+    <tr class="table-light">
+        <th>SL NO</th>
+        <th>NAME</th>
+        <th>STUDENT NAME</th>
+        <th>ADDRESS</th>
+        <th>EMAIL</th>
+        <th>PHONE NO</th>
+        <th>PHOTO</th>
+        <th>APPROVE</th>
+        <th>DELETE</th>
+
+    </tr>
+    </thead>
+         <tbody>
+    {% for j in parent %}
+    <tr class="table-secondary">
+        <td>{{forloop.counter}}</td>
+        <td>{{j.name}}</td>
+        <td>{{j.student_name}}</td>
+        <td>{{j.address}}</td>
+        <td>{{j.email}}</td>
+        <td>{{j.phone_no}}</td>
+        <td><img src="{{j.photo.url}}"></td>
+        <td>
+            {% if j.approval_status == 0 %}
+            <a class="btn-sm btn btn-secondary " href="{% url 'approve_parent' j.user_id  %}">Approve</a>
+            {% elif j.approval_status == 1 %}
+            <button class="btn-sm btn btn-success ">Approved</button>
+            {% else %}
+            <button class="btn-sm btn btn-warning ">Rejected</button>
+            {% endif %}
+        </td>
+        <td>
+            <form action="{% url 'reject_parent' j.user_id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+ </div>
+</div>
+{% endblock %}

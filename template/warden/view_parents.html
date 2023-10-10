@@ -1,0 +1,36 @@
+{% extends "warden_page.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <div class="card-header bg-primary" >
+    <strong class="card-title" style="color:white">Parent Details</strong>
+ <div class="card-body">
+     <table class="table">
+    <thead>
+    <tr class="table-light">
+        <th>SL NO</th>
+        <th>NAME</th>
+        <th>STUDENT NAME</th>
+        <th>ADDRESS</th>
+        <th>EMAIL</th>
+        <th>PHONE NO</th>
+        <th>PHOTO</th>
+    </tr>
+    </thead>
+         <tbody>
+    {% for j in parents %}
+    <tr class="table-secondary">
+        <td>{{forloop.counter}}</td>
+        <td>{{j.name}}</td>
+        <td>{{j.student_name}}</td>
+        <td>{{j.address}}</td>
+        <td>{{j.email}}</td>
+        <td>{{j.phone_no}}</td>
+        <td><img src="{{j.photo.url}}"></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+ </div>
+</div>
+
+{% endblock %}

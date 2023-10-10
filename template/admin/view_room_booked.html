@@ -1,0 +1,58 @@
+{% extends 'admin_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+
+}, 3000);
+
+</script>
+
+     <div >
+         {% for i in messages %}
+         <div class="alert alert-info" role="alert">
+             {{i}}
+         </div>
+         {% endfor %}
+     </div>
+      <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Room Booking</p></div>
+<table class="table table-hover" style="font-size:15px">
+  <thead>
+  <tr class="table-light">
+  <th>SL NO</th>
+    <th>STUDENT</th>
+      <th>BOOKED TO</th>
+    <th>BOOKING DATE</th>
+    <th>BOOKED BY</th>
+    <th>CONFIRM</th>
+
+
+  </tr>
+  </thead>
+  {% for i in data %}
+  <tbody>
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.student}}</td>
+      <td>{{i.booking_date}}</td>
+    <td>{{i.date}}</td>
+    <td>{{i.booked_by}}</td>
+    <td>
+       {% if i.status == 0 %}
+        <a href="{% url 'confirm_room_booked' i.id %}" class="btn-sm btn btn-success">confirm</a>
+          <a href="{% url 'reject_room_booked' i.id %}" class="btn-sm btn btn-danger">Reject</a>
+       {% elif i.status == 1 %}
+        <a href="{% url 'confirm_room_booked' i.id %}" class="btn-sm btn btn-success">confirmed</a>
+        {% else %}
+        <a href="{% url 'reject_room_booked' i.id %}" class="btn-sm btn btn-danger">Rejected</a>
+       {% endif %}
+    </td>
+  </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endblock %}

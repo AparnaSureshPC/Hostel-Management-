@@ -1,0 +1,30 @@
+{% extends 'parent_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-md-6 grid-margin stretch-card">
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Booking Status</h4>
+         <form class="form-sample " >
+                {% csrf_token %}
+        {% for i in data %}
+       <label class="form-label">Student </label><input class="form-control" value="{{i.student}}"><br>
+       <label class="form-label">Booked By</label><input class="form-control" value="{{i.booked_by}}"><br>
+       <label class="form-label">Booking Date</label><input class="form-control" value="{{i.booking_date}}"><br>
+        <label class="form-label">Date</label><input class="form-control" value="{{i.date}}"><br>
+        <label class="form-label">Status</label><br>
+        {% if i.status == 0 %}
+        <div class="p-3 bg-primary text-white">Not Confirmed</div>
+        {% elif i.status == 1 %}
+        <div class="p-3  bg-success text-white">Confirmed</div>
+        {% else %}
+        <div class="p-3 bg-danger text-white">Rejected</div>
+        {% endif %}
+        <label>{{data.student}}</label>
+        <label>{{data.booked_by}}</label>
+        {% endfor %}
+         </form>
+    </div>
+</div>
+</div>
+{% endblock %}

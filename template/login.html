@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab </title>
+<!--     Favicon icon-->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="{% static 'static_login/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="h-100" style="background-image:url('https://static.vecteezy.com/system/resources/previews/002/051/275/original/corridor-in-hotel-empty-hostel-hallway-interior-with-elevator-and-closed-doors-motel-hall-background-free-vector.jpg');background-size:cover;">
+    
+<!--    *******************-->
+<!--        Preloader start-->
+<!--    ********************-->
+<!--    <div id="preloader">-->
+<!--        <div class="loader">-->
+<!--            <svg class="circular" viewBox="25 25 50 50">-->
+<!--                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />-->
+<!--            </svg>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    *******************-->
+<!--        Preloader end-->
+<!--    ********************-->
+<!--        <div class="column">-->
+<!--            <div class="col-lg-12">-->
+<!---->
+<!--       {% for i in messages %}-->
+<!--      <div class="card border-primary mb-3" style="max-width: 18rem;">-->
+<!--            <div class="card-body text-primary">-->
+<!--    <p class="card-text">{{i}}</p>-->
+<!---->
+<!--  </div>-->
+<!--</div>-->
+<!--                {% endfor %}-->
+<!--                            </div>-->
+<!---->
+<!--<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">-->
+<!--  <div class="toast-header">-->
+<!--    <strong class="mr-auto">Bootstrap</strong>-->
+<!--    <small class="text-muted">11 mins ago</small>-->
+<!--    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">-->
+<!--      <span aria-hidden="true">&times;</span>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <div class="toast-body">-->
+<!--    Hello, world! This is a toast message.-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5" >
+<!--                                <a class="text-center" href="index.html"> <h4>Enter Login details to get access</h4></a>-->
+                             <div class="login-heading" style="text-align:center; ">
+                                <span style="font-size: 1.75rem;font-weight:500;font-family: 'Roboto', sans-serif;color:#5f4dee">Login</span>
+<!--                                <p style="font-size: 1rem;color:#3B4855;font-family: 'Open Sans', sans-serif">Enter Login details to get access</p>-->
+                            </div>
+        
+                                <form class="mt-5 mb-5 login-input " method='post'>
+                                    {% csrf_token %}
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" name='username' placeholder="username">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <input type="password" class="form-control" name='password' placeholder="password">
+                                    </div>
+                                    <button class="btn login-form__btn  w-100" style="padding:15px 40px;background-color:#5f4dee;font-weight:500;color:#fff;border-radius:1.5rem;border: 1px solid #5f4dee" onMouseOver="this.style.color='#f25c05'"  onMouseOut="this.style.color='#fff'">Sign In</button>
+                                </form>
+                                <p class="mt-5 login-form__footer">Dont have account? Register as : <a href="{% url 'student_reg' %}" style="color:#5f4dee;font-weight:500" onMouseOver="this.style.color='#f25c05'" onMouseOut="this.style.color='#5f4dee'">Student</a><span> / </span>
+                                    <a href="{% url 'parent_reg' %}" style="color:#5f4dee;font-weight:500" onMouseOver="this.style.color='#f25c05'" onMouseOut="this.style.color='#5f4dee'">Parent</a>
+<!--                                        <div class="column">-->
+<!--            <div class="col-lg-12">-->
+                                <div>
+                                   {% for i in messages %}
+                                  <div class="alert alert-info " role="alert">
+                                           {{i}}
+                                              </div>
+                                                 {% endfor %}
+                                                   </div>
+<!--                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'static_login/plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'static_login/js/custom.min.js' %}"></script>
+    <script src="{% static 'static_login/js/settings.js' %}"></script>
+    <script src="{% static 'static_login/js/gleek.js' %}"></script>
+    <script src="{% static 'static_login/js/styleSwitcher.js' %}"></script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Bill</title> <!-- Set your custom title here -->
+    <style>
+  @media print{
+   @page{
+  margin:0;
+  }
+  @page:footer{
+  display:none;
+  }
+  body {
+       display:flex;
+       justify-content:center;
+        align-items: center; /* Center vertically */
+                height: 100vh;
+
+    }
+
+  .btn{
+   display:none;
+  }
+  <!--to remove header-->
+
+  }
+  .table {
+        margin-bottom: 0; /* Remove spacing between tables */
+    }
+     .sub_head{
+    font-weight:bold;
+    }
+    th{
+    font-family: 'Arial' ;
+    font-size:18px;
+    }
+    td{
+    font-size:15px;
+    }
+    .table3{
+    font-weight:bold;
+    }
+
+    div{
+    width:75%;margin:auto;margin-top:10px
+    }
+
+</style>
+</head>
+<body>
+<div>
+<table class="table table-borderless ">
+    <colgroup>
+        <col style="width:130px">
+        <col style="width:140px">
+        <col style="width:150px">
+        <col>
+    </colgroup>
+  <thead>
+    <tr>
+      <th>Bill Details</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td class="sub_head">Bill No </td><td>{{payment.bill_no}}</td>
+      </tr>
+      <tr><td class="sub_head">Bill Date</td><td>{{ payment.bill_date }}</td></tr>
+      <tr>
+          <td class="sub_head">Bill Period</td><td>{{ payment.bill_start_date }}</td> <td>{{payment.bill_end_date}}</td><td></td>
+      </tr>
+      <tr>
+        <td class="sub_head">Bill Due Date</td><td>{{ payment.bill_due_date }}</td><td></td><td></td>
+      </tr>
+  </tbody>
+</table>
+<table class="table table-borderless">
+    <colgroup>
+        <col style="width:130px"><!--column width of 1st column-->
+        <col><!--column width of 2nd column-->
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Hostel</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="sub_head">Name</td><td>{{ hostel.Hostel_name }}</td>
+    </tr>
+    <tr>
+        <td class="sub_head">Address</td><td>{{ hostel.Address }}</td>
+    </tr>
+    <tr>
+        <td class="sub_head">Phone</td><td>{{ hostel.Contact_no }}</td>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-borderless">
+      <colgroup>
+          <col style="width: 130px;"> <!-- First column width -->
+          <col>
+  </colgroup>
+    <thead>
+    <tr>
+      <th>Student</th>
+    </tr>
+    </thead>
+     <tbody>
+    <tr>
+        <td class="sub_head">Name</td><td>{{ student.name }}</td>
+    </tr>
+     <tr>
+        <td class="sub_head">Address </td><td>{{ student.address }}</td>
+    </tr>
+     <tr>
+        <td class="sub_head">Phone</td><td>{{ student.phone_no }}</td>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-bordered">
+     <colgroup>
+          <col style="width: 100px;"> <!-- First column width -->
+          <col style="width: 100px;">
+         <col style="width: 100px;">
+  </colgroup>
+     <tbody>
+        <tr>
+        <th></th>
+        <td class="table3">Price</td>
+        <td class="table3">Total</td>
+    </tr>
+    <tr>
+        <td class="table3">Room Rent</td><td>{{hostel.Rent}}/Month</td><td>{{hostel.Rent}}</td>
+    </tr>
+     <tr>
+        <td class="table3">Mess Fee</td><td>60/Month</td><td>{{payment.mess_bill}}</td>
+    </tr>
+     <tr>
+        <td class="table3">Total Amount</td><td></td><td>{{payment.amount}}</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="" class="btn-sm btn btn-primary" onclick="window.print()">Get Bill</a>
+
+</div>
+
+
+
+</body>
+</html>

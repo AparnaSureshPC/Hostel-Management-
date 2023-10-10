@@ -1,0 +1,29 @@
+{% extends 'admin_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Student Attendance</p></div>
+<table class="table table-hover" style="font-size:15px">
+  <thead>
+  <tr class="table-light">
+  <th>SL NO</th>
+    <th>DATE</th>
+    <th>VIEW</th>
+
+
+  </tr>
+  </thead>
+    <tbody>
+  {% for attendance in date_list %}
+
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{attendance}}</td>
+    <td><a href="{% url 'day_attendance' attendance %}">View</a></td>
+
+  </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+{% endblock %}

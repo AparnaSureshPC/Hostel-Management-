@@ -1,0 +1,48 @@
+{% extends 'student_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+
+}, 4000);
+
+</script>
+  <div class="column">
+            <div class="col-lg-12">
+                {% for i in messages %}
+                <div class="alert alert-info alert-dismissable" role="alert">
+                    {{i}}
+                </div>
+                {% endfor %}
+            </div>
+                                </div>
+<div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Reviews</p></div>
+<table class="table table-hover" style="font-size:15px">
+  <thead>
+  <tr class="table-light">
+  <th>SL NO</th>
+    <th>DATE</th>
+    <th>COMMENTS</th>
+    <th>UPDATE</th>
+  <th>DELETE</th>
+
+
+  </tr>
+  </thead>
+  {% for i in data %}
+  <tbody>
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.date}}</td>
+    <td>{{i.comments}}</td>
+    <td><a href="{% url 'update_student_reviews' i.id %}" class="btn-sm btn btn-primary">update</a></td>
+    <td><a href="{% url 'delete_student_reviews' i.id %}" class="btn-sm btn btn-danger">delete</a></td>
+  </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endblock %}

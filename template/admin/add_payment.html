@@ -1,0 +1,59 @@
+{% extends 'admin_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% for i in messages %}
+<div class="alert alert-info " id="alert">
+    {{i}}
+</div>
+{% endfor %}
+<div class=" card card_style border border-dark">
+    <div class="card-header">ADD PAYMENT</div>
+<div class="card-body">
+   <form method="post" id="form" data-fee-url="{% url 'payment_load_to_form' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+<!--       <div id="error_message">-->
+<!--           {% if error_message %}-->
+<!--               {{ error_message }}-->
+<!--          {% endif %}-->
+<!--       </div>-->
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+          window.setTimeout(function(){
+             $('#alert').fadeTo(500,0).slideUp(500,function(){
+               $(this).remove();
+             });
+          },3000);
+
+          $('#id_student').change(function(){
+             const url = $('#form').attr('data-fee-url');
+             const studentId = $(this).val();
+             $.ajax({
+                url: url,
+                data : {
+                   'studentId': studentId
+                },
+                success: function(data){
+                 $('#id_bill_start_date').val(data.bill_start_date);
+                 $('#id_bill_end_date').val(data.bill_end_date);
+                 $('#id_mess_bill').val(data.mess_bill);
+                 $('#id_amount').val(data.amount);
+                 }
+             });
+          });
+
+          $('#id_bill_start_date,#id_bill_end_date').change(function(){
+                    console.log("Date fields changed.");
+                    console.log($("#error_message").html())
+                    $("#error_message").remove();
+          });
+
+    });
+</script>
+
+{% endblock %}

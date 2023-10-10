@@ -1,0 +1,33 @@
+{% extends 'parent_page.html' %}
+{% block content %}
+ <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Hostel Details</p></div>
+<table class="table table-hover">
+  <thead>
+<tr class="table=light">
+  <th>SL NO</th>
+         <th> NAME</th>
+        <th>ROOM FACILITIES</th>
+        <th>RENT</th>
+        <th>ADDRESS</th>
+        <th>EMAIL</th>
+        <th>CONTACT_NO</th>
+        <th>PHOTO</th>
+</tr>
+</thead>
+  <tbody>
+  {% for i in hostel %}
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.Hostel_name}}</td>
+    <td>{{i.Room_facilities}} </td>
+    <td>{{i.Rent}}</td>
+    <td>{{i.Address}}</td>
+    <td>{{i.Email}}</td>
+    <td>{{i.Contact_no}}</td>
+    <td>{{i.Photo.url}}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

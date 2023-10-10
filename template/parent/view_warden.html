@@ -1,0 +1,19 @@
+{% extends 'parent_page.html' %}
+{% block content %}
+<table class="table">
+  <thead>
+  <tr class="table-light">
+    <th>WARDEN</th>
+    <th>CONTACT NO</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+  <tr class="table-secondary">
+    <td>{{i.name}}</td>
+    <td>{{i.phone_no}}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

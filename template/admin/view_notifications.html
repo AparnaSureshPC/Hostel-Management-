@@ -1,0 +1,32 @@
+{% extends 'admin_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Notifications</p></div>
+<table class="table table-hover" >
+  <thead>
+  <tr class="table-light">
+    <th>SL NO</th>
+    <th>POSTED_ON</th>
+    <th>POSTED_TIME</th>
+    <th>POSTED_TO</th>
+    <th>NOTIFICATIONS</th>
+    <th>UPDATE</th>
+    <th>DELETE</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.Posted_On}}</td>
+    <td>{{i.Time}}</td>
+    <td>{{i.Posted_To}}</td>
+     <td>{{i.Notifications}}</td>
+    <td><a href="{% url 'update_notifications' i.id %}" class="btn btn-success btn-sm update">update</a></td>
+    <td><a href="{% url 'delete_notifications' i.id %}"  class="btn btn-danger btn-sm update">delete</a></td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+{% endblock %}

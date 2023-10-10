@@ -1,0 +1,37 @@
+{% extends 'warden_page.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">IN/OUT {{date}}</p></div>
+<table class="table table-hover" style="font-size:15px">
+
+  <thead>
+  <tr class="table-light">
+  <th>SL NO</th>
+    <th>Student</th>
+      <th>Out Time</th>
+    <th>Reason</th>
+    <th>In Time</th>
+
+
+  </tr>
+  </thead>
+  {% for i in date_inout %}
+  <tbody>
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.student}}</td>
+    <td><a class="btn-sm btn btn-danger">OUT</a> {{i.out_time}}</td>
+    <td>{{i.reason}}</td>
+    <td>
+      {% if i.status == 0  %}
+      <a href="{% url 'update_student_inout' i.id %}" class="btn-sm btn btn-secondary">Not IN </a>
+      {% else  %}
+      <a class="btn-sm btn btn-primary">IN</a> {{i.in_time}}
+      {% endif %}
+    </td>
+  </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endblock %}

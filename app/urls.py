@@ -42,6 +42,7 @@ urlpatterns = [
     path('view_payment', admin_views.view_payment, name='view_payment'),
     path('payment_delete/<int:id>/', admin_views.payment_delete, name='payment_delete'),
     path('payment_load_to_form', admin_views.payment_load_to_form, name='payment_load_to_form'),
+    path('admin_view_bill/<int:id>/', admin_views.admin_view_bill, name='admin_view_bill'),
     path('card', student_views.card, name='card'),
     path('view_student_hostel_details', student_views.view_student_hostel_details, name='view_student_hostel_details'),
     path('view_student_food_details', student_views.view_student_food_details, name='view_student_food_details'),
@@ -67,6 +68,10 @@ urlpatterns = [
     path('student_view_fee', student_views.student_view_fee, name='student_view_fee'),
     path('parent_card', parent_views.parent_card, name="parent_card"),
     path('student_view_bill/<int:id>/', student_views.student_view_bill, name='student_view_bill'),
+    path('checkout_session_student/<int:id>/', student_views.checkout_session_student, name='checkout_session_student'),
+    path('pay_success', student_views.pay_success, name='pay_success'),
+    path('pay_cancelled', student_views.pay_cancelled, name='pay_cancelled'),
+    path('success_return', student_views.success_return, name='success_return'),
     path('view_hostel_details', parent_views.view_hostel_details, name="view_hostel_details"),
     path('parent_view_attendance', parent_views.parent_view_attendance, name='parent_view_attendance'),
     path('parent_book_room', parent_views.parent_book_room, name="parent_book_room"),
@@ -102,6 +107,5 @@ urlpatterns = [
     path('date_based_inout/<date>/', warden_views.date_based_inout, name='date_based_inout'),
     path('update_student_inout/<int:id>/', warden_views.update_student_inout, name='update_student_inout'),
     path('st_reg', views.st_reg, name='st_reg'),
-
 
 ]

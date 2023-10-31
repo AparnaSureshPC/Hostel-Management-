@@ -35,7 +35,7 @@
     <td><a href="{% url 'student_view_bill' i.id %}">Bill</a></td>
    <td>
     {% if i.status == 0 %}
-       <form method="post" action="{% url 'checkout_session' i.id %}">
+       <form method="post" action="{% url 'checkout_session_student' i.id %}">
            {% csrf_token %}
        <button class="btn-sm btn btn-primary" id="submitBtn">Pay</button>
     </form>

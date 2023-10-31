@@ -1,7 +1,9 @@
 import datetime
 
+import stripe
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.core.mail import message
+from django.shortcuts import render, redirect, get_object_or_404
 
 from app.forms import review_form, ComplaintForm, BookRoomForm
 from app.models import Hostel, Food, Notifications, Reviews, Student, Complaints, BookRoom, Attendance, \
@@ -155,3 +157,58 @@ def student_view_bill(request, id):
         'student': student
     }
     return render(request, 'student/view_bill.html', context)
+
+
+stripe.api_key = 'sk_test_51NvD3cSAMEcakUFvLSLt5GjlZjGN1jQzJv72cU1k4e8TsAEBz2O5soSlZPnA5N8DDo7hhfIHY4F4xhWpSt1RHJ3w00rxo0NXB0'
+
+
+def checkout_session_student(request, id):
+    payment = Payment.objects.get(pk=id)
+    stripe.api_key = stripe.api_key
+    amount = int(payment.amount * 100)
+    student = Student.objects.get(user=request.user)
+    student_email = student.email
+    session = stripe.checkout.Session.create(
+        success_url='http://127.0.0.1:8000/pay_success/?payment_id={}'.format(payment.id),
+        cancel_url='http://127.0.0.1:8000/pay_cancelled',
+        payment_method_types=['card'],
+        mode='payment',
+        line_items=[
+            {
+                'price_data': {
+                    'currency': 'inr',
+                    'unit_amount': amount,
+                    'product_data': {
+                        'name': payment.student,
+                    },
+                },
+                'quantity': 1,
+            }
+        ],
+        customer_email=student_email
+    )
+    return redirect(session.url, code=303)
+
+
+def pay_success(request):
+    # You might want to pass the payment ID as a query parameter in your success URL
+    payment_id = request.GET.get('payment_id')
+    # Retrieve the Payment object
+    payment = get_object_or_404(Payment, pk=payment_id)
+    payment.status = 1
+    payment.save()
+    return render(request, 'student/payment_success.html')
+
+
+def pay_cancelled(request):
+    return render(request, 'student/payment_failed.html')
+
+
+def success_return(request):
+    return redirect('card')
+
+
+def student_delete_account(request):
+    request.user.delete()
+    messages.info(request, 'Account deleted Successfully')
+    return redirect('card')

@@ -149,7 +149,7 @@ def checkout_session(request, id):
     stripe.api_key = stripe.api_key
     amount_in_cents = int(payment.amount * 100)
     parent = Parent.objects.get(user=request.user)
-    student_email = parent.email
+    parent_email = parent.email
     session = stripe.checkout.Session.create(
         success_url='http://127.0.0.1:8000/pay_success/?payment_id={}'.format(payment.id),
         cancel_url='http://127.0.0.1:8000/pay_cancelled',
@@ -167,7 +167,7 @@ def checkout_session(request, id):
                 'quantity': 1,
             }
         ],
-        customer_email=student_email
+        customer_email=parent_email
     )
     return redirect(session.url, code=303)
 

@@ -20,7 +20,7 @@ def add_hosteldetails(request):
         h_form = Hosteldetails(request.POST, request.FILES)
         if h_form.is_valid():
             h_form.save()
-            return redirect('admin_page')
+            return redirect('admin_card')
     return render(request, 'admin/hosteldetails.html', {'h_form': h_form})
 
 
@@ -51,7 +51,7 @@ def add_fooddetails(request):
         f_form = FoodDetails(request.POST)
         if f_form.is_valid():
             f_form.save()
-            return redirect('admin_page')
+            return redirect('admin_card')
     return render(request, 'admin/add_fooddetails.html', {'f_form': f_form})
 
 
@@ -82,7 +82,7 @@ def add_notifications(request):
         n_form = notification_details(request.POST)
         if n_form.is_valid():
             n_form.save()
-            return redirect('admin_page')
+            return redirect('admin_card')
     return render(request, 'admin/add_notifications.html', {'n_form': n_form})
 
 
@@ -121,7 +121,7 @@ def add_warden(request):
             warden.user = user
             warden.save()
             messages.info(request, 'Registered Successfully')
-            return redirect('admin_page')
+            return redirect('admin_card')
     return render(request, 'admin/add_warden.html', {'u_form': u_form, 'w_form': w_form})
 
 
@@ -359,3 +359,14 @@ def payment_delete(request, id):
     Payment.objects.get(id=id).delete()
     return redirect('view_payment')
 
+
+def admin_view_bill(request, id):
+    payment = Payment.objects.get(id=id)
+    hostel = Hostel.objects.all().last()
+    student = Student.objects.get(name=payment.student)
+    context = {
+        'payment': payment,
+        'hostel': hostel,
+        'student': student
+    }
+    return render(request, 'student/view_bill.html', context)

@@ -3,10 +3,12 @@ from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 # Create your views here.
 from app.forms import UserRegister, Studentreg, Parentreg
+from app.models import Reviews, Student
 
 
 def homepage(request):
-    return render(request, 'index.html')
+    reviews = Reviews.objects.all()
+    return render(request, 'index.html', {'reviews': reviews})
 
 
 def loginpage(request):

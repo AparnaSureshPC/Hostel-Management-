@@ -1,7 +1,7 @@
 {% extends 'parent_page.html' %}
 {% block content %}
  <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
-    font-weight: 500;    font-size: 1rem;">ATTENDANCE OF {{request.user.parent.student_name}}</p></div>
+    font-weight: 500;    font-size: 1rem;">{{request.user.parent.student_name}}  </p></div>
 <table class="table table-hover">
   <thead>
 <tr class="table-light">
@@ -11,11 +11,13 @@
 </tr>
 </thead>
   <tbody>
-  {% for i in attendance %}
+  {% for i in data %}
   <tr class="table-secondary">
     <td>{{forloop.counter}}</td>
     <td>{{i.date}}</td>
     <td>{{i.attendance}} </td>
+<!--       <td>{{i}}</td>-->
+<!--    <td><a href="{% url 'day_attendance' i %}">view</a> </td>-->
 
   </tr>
   {% endfor %}

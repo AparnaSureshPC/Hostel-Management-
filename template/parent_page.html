@@ -42,6 +42,8 @@
     background-color:#f25c05;
     color:white
 }
+.card_style{
+width: 40rem;margin:auto;margin-top:30px}
 
   $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
@@ -128,10 +130,10 @@
               <img src="{{request.user.parent.photo.url}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
-                Settings
-              </a>
+<!--              <a class="dropdown-item">-->
+<!--                <i class="ti-settings text-primary"></i>-->
+<!--                Settings-->
+<!--              </a>-->
               <a class="dropdown-item" href="{% url 'log_out' %}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
@@ -364,7 +366,7 @@
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{% url 'parent_view_fee' %}">View</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Pay Status</a></li>
+<!--                <li class="nav-item"><a class="nav-link" href="">Pay Status</a></li>-->
               </ul>
             </div>
           </li>
@@ -540,10 +542,6 @@
 <!--                  </div>-->
 <!--                    </div>-->
             <div class="container">
-<!--  <h2>Modal Example</h2>-->
-<!--  &lt;!&ndash; Trigger the modal with a button &ndash;&gt;-->
-<!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
-
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

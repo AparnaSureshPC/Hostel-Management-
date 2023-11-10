@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title>Student Registration</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -48,16 +48,16 @@
 
 <!--                                    <a class="text-center" href="index.html"> <h4>Rosella</h4></a>-->
                                    <div class="login-heading" style="text-align:center; ">
-                                <span style="font-size: 1.75rem;font-weight:500;font-family: 'Roboto', sans-serif;color:#5f4dee">Sign Up</span>
-                                <p style="font-size: 1rem;color:#3B4855;font-family: 'Open Sans', sans-serif">Create your account to get full access</p>
+                                <span style="font-size: 1.75rem;font-weight:600;font-family: 'Roboto', sans-serif;color:#4B49AC">Sign Up</span>
+                                <p style="font-size: 1rem;color:#4B49AC;font-family: 'Open Sans', sans-serif">Create your account to get full access</p>
                                    </div>
                                 <form class="mt-5 mb-5 login-input" method="post" enctype="multipart/form-data">
                                      {% csrf_token %}
                                     {{u_form|crispy}}
                                     {{s_form|crispy}}
 
-                                    <button class="btn login-form__btn  w-100" type="submit" style="margin-top:5px;padding:15px 40px;background-color:#5f4dee;font-weight:700;color:#fff;border-radius:1.5rem;border: 1px solid #5f4dee">Sign Up</button>
-                                <p class="" style="text-align:center;margin-top:35px">Already have an account?  <a href="{% url 'loginpage' %}" style="color:#5f4dee;font-weight:500" onMouseOver="this.style.color='#f25c05'" onMouseOut="this.style.color='#5f4dee'">Login </a> now</p>
+                                    <button class="btn login-form__btn  w-100" type="submit" style="margin-top:5px;padding:15px 40px;background-color:#4B49AC;font-weight:700;color:#fff;border-radius:1.5rem;border: 1px solid #4B49AC">Sign Up</button>
+                                <p class="" style="text-align:center;margin-top:35px">Already have an account?  <a href="{% url 'loginpage' %}" style="color:#4B49AC;font-weight:500" onMouseOver="this.style.color='#f25c05'" onMouseOut="this.style.color='#4B49AC'">Login </a> now</p>
                                 </form>
 
 

@@ -19,8 +19,15 @@
         <meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
 
         <!-- Webpage Title -->
-        <title>Ioniq Webpage Title</title>
-        
+        <title>Hostel.</title>
+<!-- CSS -->
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+
+<!-- JavaScript and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -30,20 +37,41 @@
         
         <!-- Favicon  -->
         <link rel="icon" href="{% static 'images/favicon.png' %}">
+        <style>
+            .carousel { width:800px; height:400px;margin:auto;}
+            .modal-dialog{width:400px}
+            .modal-header .close {
+
+              font-size:25px;
+              border: none;
+
+                  }
+
+            .modal-header {
+            border-bottom: none ;
+            }
+
+            .pt-4{
+            color: #565578;font-weight: 900;font-size:20px;
+             }
+             .modal-footer a{
+             text-decoration:none;background-color: #272556;border:solid 1px #272556
+             }
+        </style>
     </head>
     <body data-bs-spy="scroll" data-bs-target="#navbarExample" >
-        <div class="body-image" style="background-image:url('https://images.pexels.com/photos/5137962/pexels-photo-5137962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-repeat:no-repeat;background-size:cover;
-    background-position: center center; ">
+<!--        <div class="body-image" style="background-image:url('https://images.pexels.com/photos/15273741/pexels-photo-15273741/free-photo-of-symmetrical-view-of-a-narrow-hotel-corridor.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-repeat:no-repeat;background-size:cover;-->
+<!--    background-position: center center; ">-->
 
             <!-- Navigation -->
-        <nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation" >
+        <nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation" style="background-color: #fff2dc;">
             <div class="container">
 
 <!--                 Image Logo-->
 <!--                <a class="navbar-brand logo-image" href="index.html"><img src="{% static 'images/logo.svg' %}" alt="alternative"></a>-->
 
 <!--                 Text Logo - Use this if you don't have a graphic logo-->
-                 <a class="navbar-brand logo-text" href="index.html"> Home away from your Home</a>
+                 <a class="navbar-brand logo-text" href="index.html"> Home away from Home</a>
 
                 <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -84,22 +112,42 @@
 
         
         <!-- Header -->
-        <header id="header" class="header">
+        <header id="header" class="header" style="background-color: #fff2dc;">
             <div class="container">
                 <div class="row" >
 
                     <div class="col-lg-6">
                         <div class="text-container">
 <!--                            <h1 class="h1-large">HOSTEL PROVIDES <span class="replace-me">Comfortable and inviting common areas,Plenty of clean functional bathrooms,Educated staff,Good location,well-connected to public transport,Free breakfast,Free Wi-Fi Service,Laundry facilities or service,best canteen,Hygienic food</span></h1>-->
-                            <h1>WHY US?</h1>
-                            <p class="p-large" >We understand that living away from home can be challenging, which is why our aim is to create a comfortable living environment with all the amenities you need to succeed, both academically and socially. We want to break away from traditional, box-like student housing and offer you a holistic community for young individuals; a home away from home. </p>
-                            <a class="btn-solid-lg" href="sign-up.html">Register</a>
+                            <h1>Why Us?</h1>
+                            <p class="p-large" style="color: #565578;" >We understand that living away from home can be challenging, which is why our aim is to create a comfortable living environment with all the amenities you need to succeed, both academically and socially. We want to break away from traditional, box-like student housing and offer you a holistic community for young individuals; a home away from home. </p>
+                            <a class="btn-solid-lg" href="#" data-toggle="modal" data-target="#myModal">Register</a>
+                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-centered " role="document">
+                         <div class="modal-content">
+                          <div class="modal-header">
+                             <h5 class="modal-title" id="exampleModalLabel">Register as :</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+<!--      <div class="modal-body">-->
+<!--        ...-->
+<!--      </div>-->
+                         <div class="modal-footer">
+                          <a href="{% url 'parent_reg' %}" class="btn-sm btn btn-primary">Parent</a>
+                         <a href="{% url 'student_reg' %}" class="btn-sm btn btn-primary">Student</a>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div></div>
+
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
-<!--                        <div class="image-container">-->
-<!--                            <img class="img-fluid" src="{% static 'images/hostel-room-with-four-bunk-beds.jpg' %}" alt="alternative">-->
-<!--                        </div>-->
+                        <div class="image-container">
+                            <img class="img-fluid" src="https://static.vecteezy.com/system/resources/previews/013/903/884/original/hostel-for-young-people-concept-positive-girls-friends-cartoon-characters-sitting-sharing-one-room-in-hostel-or-hotel-chatting-communicating-together-illustration-vector.jpg" alt="alternative">
+                        </div>
 <!--                          end of image-container-->
                     </div>
 <!--                          end of col-->
@@ -110,169 +158,7 @@
             </div> <!-- end of container -->
         </header> <!-- end of header -->
         <!-- end of header -->
-
-
-<!--         Features-->
-        <div id="features" class="cards-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="h2-heading">Ioniq CRM application is packed with <span>awesome features</span></h2>
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <!-- Card -->
-                        <div class="card">
-                            <div class="card-icon">
-                                <span class="fas fa-headphones-alt"></span>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Customer Lists</h4>
-                                <p>Et blandit nisl libero at arcu. Donec ac lectus sed tellus mollis viverra. Nullam pharetra ante at nunc elementum</p>
-                            </div>
-                        </div>
-                        <!-- end of card -->
-
-                        <!-- Card -->
-                        <div class="card">
-                            <div class="card-icon green">
-                                <span class="far fa-clipboard"></span>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Sales Tracking</h4>
-                                <p>Vulputate nibh feugiat. Morbi pellent diam nec libero lacinia, sed ultrices velit scelerisque. Nunc placerat justo sem</p>
-                            </div>
-                        </div>
-                        <!-- end of card -->
-
-                        <!-- Card -->
-                        <div class="card">
-                            <div class="card-icon blue">
-                                <span class="far fa-comments"></span>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Reporting Tool</h4>
-                                <p>Ety suscipit metus sollicitudin euqu isq imperdiet nibh nec magna tincidunt, nec pala vehicula neque sodales verum</p>
-                            </div>
-                        </div>
-                        <!-- end of card -->
-
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of cards-1 -->
-        <!-- end of services -->
-
-
-        <!-- Details 1 -->
-        <div id="details" class="basic-1 bg-gray">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-xl-5">
-                        <div class="text-container">
-                            <h2>Manage your customer’s expectations and get them to trust you</h2>
-                            <p>Vestibulum ullamcorper augue ex, imperdiet tincidunt tellus bibendum inconsectetur rutrum mauris orbi scelerisque cursus augue, ac suscipit sem mattis at ut suscipit</p>
-                            <a class="btn-solid-reg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Modal</a>
-                        </div> <!-- end of text-container -->
-                    </div> <!-- end of col -->
-                    <div class="col-lg-6 col-xl-7">
-                        <div class="image-container">
-                            <img class="img-fluid" src="{% static 'images/details-1.svg' %}" alt="alternative">
-                        </div> <!-- end of image-container -->
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of basic-1 -->
-        <!-- end of details 1 -->
-
-
-        <!-- Details Modal -->
-        <div id="staticBackdrop" class="modal fade" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="row">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <div class="col-lg-8">
-                            <div class="image-container">
-                                <img class="img-fluid" src="{% static 'images/details-modal.jpg' %}" alt="alternative">
-                            </div> <!-- end of image-container -->
-                        </div> <!-- end of col -->
-                        <div class="col-lg-4">
-                            <h3>Goals Setting</h3>
-                            <hr>
-                            <p>In gravida at nunc sodales pretium. Vivamus semper, odio vitae mattis auctor, elit elit semper magna ac tum nico vela spider</p>
-                            <h4>User Feedback</h4>
-                            <p>Sapien vitae eros. Praesent ut erat a tellus posuere nisi more thico cursus pharetra finibus posuere nisi. Vivamus feugiat</p>
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="d-flex">
-                                    <i class="fas fa-chevron-right"></i>
-                                    <div class="flex-grow-1">Tincidunt sem vel brita bet mala</div>
-                                </li>
-                                <li class="d-flex">
-                                    <i class="fas fa-chevron-right"></i>
-                                    <div class="flex-grow-1">Sapien condimentum sacoz sil necr</div>
-                                </li>
-                                <li class="d-flex">
-                                    <i class="fas fa-chevron-right"></i>
-                                    <div class="flex-grow-1">Fusce interdum nec ravon fro urna</div>
-                                </li>
-                                <li class="d-flex">
-                                    <i class="fas fa-chevron-right"></i>
-                                    <div class="flex-grow-1">Integer pulvinar biolot bat tortor</div>
-                                </li>
-                                <li class="d-flex">
-                                    <i class="fas fa-chevron-right"></i>
-                                    <div class="flex-grow-1">Id ultricies fringilla fangor raq trinit</div>
-                                </li>
-                            </ul>
-                            <a id="modalCtaBtn" class="btn-solid-reg" href="#your-link">Details</a>
-                            <button type="button" class="btn-outline-reg" data-bs-dismiss="modal">Close</button>
-                        </div> <!-- end of col -->
-                    </div> <!-- end of row -->
-                </div> <!-- end of modal-content -->
-            </div> <!-- end of modal-dialog -->
-        </div> <!-- end of modal -->
-        <!-- end of details modal -->
-
-
-        <!-- Details 2 -->
-        <div class="basic-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="image-container">
-                            <img class="img-fluid" src="{% static 'images/details-2.png' %}" alt="alternative">
-                        </div> <!-- end of image-container -->
-                    </div> <!-- end of col -->
-                    <div class="col-lg-6">
-                        <div class="text-container">
-                            <h2>Anyone can start using the app with minimum skills</h2>
-                            <p>Velit dictum non proin egestas convallis nunc, eu auctor massa. Nam hendrerit, eros ut viverra lobortis, mauris nisi porta risus, placerat dignissim tellus auctor masse</p>
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="d-flex">
-                                    <i class="fas fa-square"></i>
-                                    <div class="flex-grow-1">Fusce ipsum augue, ultrices rutrum est accel, pulvin</div>
-                                </li>
-                                <li class="d-flex">
-                                    <i class="fas fa-square"></i>
-                                    <div class="flex-grow-1">Fermentum elit. Vestibulum cursuso bibendum viverra</div>
-                                </li>
-                                <li class="d-flex">
-                                    <i class="fas fa-square"></i>
-                                    <div class="flex-grow-1">Quisque blandit pulvinar metus, eu sta malesuada</div>
-                                </li>
-                            </ul>
-                        </div> <!-- end of text-container -->
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of basic-2 -->
-        <!-- end of details 2 -->
-
-
-        <!-- Testimonials -->
+ <!-- Testimonials -->
         <div class="slider-1 bg-gray">
             <div class="container">
                 <div class="row">
@@ -388,152 +274,372 @@
         </div> <!-- end of slider-1 -->
         <!-- end of testimonials -->
 
-<div style="text-align:center;position:relative;bottom:70px"><a href="" style="text-align:center;font-size:20px;color:#272556;font-family: 'Open Sans', sans-serif"><b>Write a Review</b></a></div>
-        <!-- Invitation -->
-        <div class="basic-3">
+
+<!--         Features-->
+<!--        <div id="features" class="cards-1">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+
+<!--                        <h2 class="h2-heading">Ioniq CRM application is packed with <span>awesome features</span></h2>-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+
+<!--                        &lt;!&ndash; Card &ndash;&gt;-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-icon">-->
+<!--                                <span class="fas fa-headphones-alt"></span>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="card-title">Customer Lists</h4>-->
+<!--                                <p>Et blandit nisl libero at arcu. Donec ac lectus sed tellus mollis viverra. Nullam pharetra ante at nunc elementum</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; end of card &ndash;&gt;-->
+
+<!--                        &lt;!&ndash; Card &ndash;&gt;-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-icon green">-->
+<!--                                <span class="far fa-clipboard"></span>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="card-title">Sales Tracking</h4>-->
+<!--                                <p>Vulputate nibh feugiat. Morbi pellent diam nec libero lacinia, sed ultrices velit scelerisque. Nunc placerat justo sem</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; end of card &ndash;&gt;-->
+
+<!--                        &lt;!&ndash; Card &ndash;&gt;-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-icon blue">-->
+<!--                                <span class="far fa-comments"></span>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="card-title">Reporting Tool</h4>-->
+<!--                                <p>Ety suscipit metus sollicitudin euqu isq imperdiet nibh nec magna tincidunt, nec pala vehicula neque sodales verum</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <!-- end of card -->
+
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of cards-1 &ndash;&gt;-->
+        <!-- end of services -->
+
+
+        <!-- Details 1 -->
+<!--        <div id="details" class="basic-1 bg-gray">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-6 col-xl-5">-->
+
+<!--                        <div class="text-container">-->
+<!--                            <h2>Manage your customer’s expectations and get them to trust you</h2>-->
+<!--                            <p>Vestibulum ullamcorper augue ex, imperdiet tincidunt tellus bibendum inconsectetur rutrum mauris orbi scelerisque cursus augue, ac suscipit sem mattis at ut suscipit</p>-->
+<!--                            <a class="btn-solid-reg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Modal</a>-->
+<!--                        </div> &lt;!&ndash; end of text-container &ndash;&gt;-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                    <div class="col-lg-6 col-xl-7">-->
+<!--                        <div class="image-container">-->
+<!--                            <img class="img-fluid" src="{% static 'images/details-1.svg' %}" alt="alternative">-->
+<!--                        </div> &lt;!&ndash; end of image-container &ndash;&gt;-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of basic-1 &ndash;&gt;-->
+        <!-- end of details 1 -->
+
+
+        <!-- Details Modal -->
+<!--        <div id="staticBackdrop" class="modal fade" tabindex="-1" aria-hidden="true">-->
+<!--            <div class="modal-dialog">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="row">-->
+<!--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                        <div class="col-lg-8">-->
+<!--                            <div class="image-container">-->
+<!--                                <img class="img-fluid" src="{% static 'images/details-modal.jpg' %}" alt="alternative">-->
+<!--                            </div> &lt;!&ndash; end of image-container &ndash;&gt;-->
+<!--                        </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                        <div class="col-lg-4">-->
+<!--                            <h3>Goals Setting</h3>-->
+<!--                            <hr>-->
+<!--                            <p>In gravida at nunc sodales pretium. Vivamus semper, odio vitae mattis auctor, elit elit semper magna ac tum nico vela spider</p>-->
+<!--                            <h4>User Feedback</h4>-->
+<!--                            <p>Sapien vitae eros. Praesent ut erat a tellus posuere nisi more thico cursus pharetra finibus posuere nisi. Vivamus feugiat</p>-->
+<!--                            <ul class="list-unstyled li-space-lg">-->
+<!--                                <li class="d-flex">-->
+<!--                                    <i class="fas fa-chevron-right"></i>-->
+<!--                                    <div class="flex-grow-1">Tincidunt sem vel brita bet mala</div>-->
+<!--                                </li>-->
+<!--                                <li class="d-flex">-->
+<!--                                    <i class="fas fa-chevron-right"></i>-->
+<!--                                    <div class="flex-grow-1">Sapien condimentum sacoz sil necr</div>-->
+<!--                                </li>-->
+<!--                                <li class="d-flex">-->
+<!--                                    <i class="fas fa-chevron-right"></i>-->
+<!--                                    <div class="flex-grow-1">Fusce interdum nec ravon fro urna</div>-->
+<!--                                </li>-->
+<!--                                <li class="d-flex">-->
+<!--                                    <i class="fas fa-chevron-right"></i>-->
+<!--                                    <div class="flex-grow-1">Integer pulvinar biolot bat tortor</div>-->
+<!--                                </li>-->
+<!--                                <li class="d-flex">-->
+<!--                                    <i class="fas fa-chevron-right"></i>-->
+<!--                                    <div class="flex-grow-1">Id ultricies fringilla fangor raq trinit</div>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                            <a id="modalCtaBtn" class="btn-solid-reg" href="#your-link">Details</a>-->
+<!--                            <button type="button" class="btn-outline-reg" data-bs-dismiss="modal">Close</button>-->
+<!--                        </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                    </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of modal-content &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of modal-dialog &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of modal &ndash;&gt;-->
+<!--        &lt;!&ndash; end of details modal &ndash;&gt;-->
+
+
+        <!-- Details 2 -->
+<!--        <div class="basic-2">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-6">-->
+
+<!--                        <div class="image-container">-->
+<!--                            <img class="img-fluid" src="{% static 'images/details-2.png' %}" alt="alternative">-->
+<!--                        </div> &lt;!&ndash; end of image-container &ndash;&gt;-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                    <div class="col-lg-6">-->
+<!--                        <div class="text-container">-->
+<!--                            <h2>Anyone can start using the app with minimum skills</h2>-->
+<!--                            <p>Velit dictum non proin egestas convallis nunc, eu auctor massa. Nam hendrerit, eros ut viverra lobortis, mauris nisi porta risus, placerat dignissim tellus auctor masse</p>-->
+<!--                            <ul class="list-unstyled li-space-lg">-->
+<!--                                <li class="d-flex">-->
+<!--                                    <i class="fas fa-square"></i>-->
+<!--                                    <div class="flex-grow-1">Fusce ipsum augue, ultrices rutrum est accel, pulvin</div>-->
+<!--                                </li>-->
+<!--                                <li class="d-flex">-->
+<!--                                    <i class="fas fa-square"></i>-->
+<!--                                    <div class="flex-grow-1">Fermentum elit. Vestibulum cursuso bibendum viverra</div>-->
+<!--                                </li>-->
+<!--                                <li class="d-flex">-->
+<!--                                    <i class="fas fa-square"></i>-->
+<!--                                    <div class="flex-grow-1">Quisque blandit pulvinar metus, eu sta malesuada</div>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div> &lt;!&ndash; end of text-container &ndash;&gt;-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of basic-2 &ndash;&gt;-->
+        <!-- end of details 2 -->
+   <div class="basic-3">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h4>Ioniq will change the way you think about CRM solutions due to it’s advanced tools and integrated functionalities</h4>
+                        <h3 style="color:white">About Us</h3>
+                        <h4>Our Hostel is a safe space where we strive to provide our students with the comforts of a home and the experience of residing within college culture</h4>
                         <a class="btn-outline-lg page-scroll" href="sign-up.html">Register</a>
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
         </div> <!-- end of basic-3 -->
         <!-- end of invitation -->
-
-
-        <!-- Pricing -->
-        <div id="pricing" class="cards-2 bg-gray">
+<div class="slider-1 bg-gray">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="h2-heading">Free forever tier and 2 pro plans</h2>
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <!-- Card -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <img class="decoration-lines" src="{% static 'images/decoration-lines.svg' %}" alt="alternative"><span>Free tier</span><img class="decoration-lines flipped" src="{% static 'images/decoration-lines.svg' %}" alt="alternative">
-                                </div>
-                                <ul class="list-unstyled li-space-lg">
-                                    <li>Fusce pulvinar eu mi acm</li>
-                                    <li>Curabitur consequat nisl bro</li>
-                                    <li>Reget facilisis molestie</li>
-                                    <li>Vivamus vitae sem in tortor</li>
-                                    <li>Pharetra vehicula ornares</li>
-                                    <li>Vivamus dignissim sit amet</li>
-                                    <li>Ut convallis aliquama set</li>
-                                </ul>
-                                <div class="price">Free</div>
-                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>
-                            </div>
-                        </div>
-                        <!-- end of card -->
-
-                        <!-- Card -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <img class="decoration-lines" src="{% static 'images/decoration-lines.svg' %}" alt="alternative"><span>Advanced</span><img class="decoration-lines flipped" src="{% static 'images/decoration-lines.svg' %}" alt="alternative">
-                                </div>
-                                <ul class="list-unstyled li-space-lg">
-                                    <li>Nunc commodo magna quis</li>
-                                    <li>Lacus fermentum tincidunt</li>
-                                    <li>Nullam lobortis porta diam</li>
-                                    <li>Announcing of invita mro</li>
-                                    <li>Dictum metus placerat luctus</li>
-                                    <li>Sed laoreet blandit mollis</li>
-                                    <li>Mauris non luctus est</li>
-                                </ul>
-                                <div class="price">$19<span>/month</span></div>
-                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>
-                            </div>
-                        </div>
-                        <!-- end of card -->
-
-                        <!-- Card -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <img class="decoration-lines" src="{% static 'images/decoration-lines.svg' %}" alt="alternative"><span>Professional</span><img class="decoration-lines flipped" src="{% static 'images/decoration-lines.svg' %}" alt="alternative">
-                                </div>
-                                <ul class="list-unstyled li-space-lg">
-                                    <li>Quisque rutrum mattis</li>
-                                    <li>Quisque tristique cursus lacus</li>
-                                    <li>Interdum sollicitudin maec</li>
-                                    <li>Quam posuerei pellentesque</li>
-                                    <li>Est neco gravida turpis integer</li>
-                                    <li>Mollis felis. Integer id quam</li>
-                                    <li>Id tellus hendrerit lacinia</li>
-                                </ul>
-                                <div class="price">$29<span>/month</span></div>
-                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>
-                            </div>
-                        </div>
-                        <!-- end of card -->
-
+                    <div class="col-lg-12" >
+                         <h2 class="h2-heading" style="bottom:20px">Our Gallery</h2>
+                       </div>
+                    </div>
+                         <div class="row">
+                    <div class="col-lg-12" >
+                        <div class="slide 300-px-wide">
+                            <div id="carouselExampleControls" class="carousel " data-ride="carousel">
+                             <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" style="height:500px"src="https://images.pexels.com/photos/15273741/pexels-photo-15273741/free-photo-of-symmetrical-view-of-a-narrow-hotel-corridor.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" style="height:500px"src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/24/cb/33/8-bed-mixed-gender-dorm.jpg?w=700&h=-1&s=1" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" style="height:500px"src="https://images.adsttc.com/media/images/61ce/d107/23d7/e810/451d/3575/newsletter/e-phx2875-fs.jpg?1640944002" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+                       </div>
+<!--                        <h3 style="color:white">About Us</h3>-->
+<!--                        <h4>Our Hostel is a safe space where we strive to provide our students with the comforts of a home and the experience of residing within college culture</h4>-->
+<!--                        <a class="btn-outline-lg page-scroll" href="sign-up.html">Register</a>-->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
-        </div> <!-- end of cards-2 -->
+        </div> <!-- end of basic-3 -->
+
+<!--<div style="text-align:center;position:relative;bottom:70px"><a href="" style="text-align:center;font-size:20px;color:#272556;font-family: 'Open Sans', sans-serif"><b>Write a Review</b></a></div>-->
+<!--        &lt;!&ndash; Invitation &ndash;&gt;-->
+<!--        <div class="basic-3">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                        <h3 style="color:white">Why Choose Us</h3>-->
+<!--                        <h4>We understand that living away from home can be challenging, which is why our aim is to create a comfortable living environment with all the amenities you need to succeed, both academically and socially. We want to break away from traditional, box-like student housing and offer you a holistic community for young individuals; a home away from home.</h4>-->
+<!--                        <a class="btn-outline-lg page-scroll" href="sign-up.html">Register</a>-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of basic-3 &ndash;&gt;-->
+        <!-- end of invitation -->
+
+
+        <!-- Pricing -->
+<!--        <div id="pricing" class="cards-2 bg-gray">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                        <h2 class="h2-heading">Gallery</h2>-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+
+                        <!-- Card -->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title">-->
+<!--                                    <img class="decoration-lines" src="{% static 'images/decoration-lines.svg' %}" alt="alternative"><span>Free tier</span><img class="decoration-lines flipped" src="{% static 'images/decoration-lines.svg' %}" alt="alternative">-->
+<!--                                </div>-->
+<!--                                <ul class="list-unstyled li-space-lg">-->
+<!--                                    <li>Fusce pulvinar eu mi acm</li>-->
+<!--                                    <li>Curabitur consequat nisl bro</li>-->
+<!--                                    <li>Reget facilisis molestie</li>-->
+<!--                                    <li>Vivamus vitae sem in tortor</li>-->
+<!--                                    <li>Pharetra vehicula ornares</li>-->
+<!--                                    <li>Vivamus dignissim sit amet</li>-->
+<!--                                    <li>Ut convallis aliquama set</li>-->
+<!--                                </ul>-->
+<!--                                <div class="price">Free</div>-->
+<!--                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <!-- end of card -->
+
+                        <!-- Card -->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title">-->
+<!--                                    <img class="decoration-lines" src="{% static 'images/decoration-lines.svg' %}" alt="alternative"><span>Advanced</span><img class="decoration-lines flipped" src="{% static 'images/decoration-lines.svg' %}" alt="alternative">-->
+<!--                                </div>-->
+<!--                                <ul class="list-unstyled li-space-lg">-->
+<!--                                    <li>Nunc commodo magna quis</li>-->
+<!--                                    <li>Lacus fermentum tincidunt</li>-->
+<!--                                    <li>Nullam lobortis porta diam</li>-->
+<!--                                    <li>Announcing of invita mro</li>-->
+<!--                                    <li>Dictum metus placerat luctus</li>-->
+<!--                                    <li>Sed laoreet blandit mollis</li>-->
+<!--                                    <li>Mauris non luctus est</li>-->
+<!--                                </ul>-->
+<!--                                <div class="price">$19<span>/month</span></div>-->
+<!--                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <!-- end of card -->
+
+                        <!-- Card -->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title">-->
+<!--                                    <img class="decoration-lines" src="{% static 'images/decoration-lines.svg' %}" alt="alternative"><span>Professional</span><img class="decoration-lines flipped" src="{% static 'images/decoration-lines.svg' %}" alt="alternative">-->
+<!--                                </div>-->
+<!--                                <ul class="list-unstyled li-space-lg">-->
+<!--                                    <li>Quisque rutrum mattis</li>-->
+<!--                                    <li>Quisque tristique cursus lacus</li>-->
+<!--                                    <li>Interdum sollicitudin maec</li>-->
+<!--                                    <li>Quam posuerei pellentesque</li>-->
+<!--                                    <li>Est neco gravida turpis integer</li>-->
+<!--                                    <li>Mollis felis. Integer id quam</li>-->
+<!--                                    <li>Id tellus hendrerit lacinia</li>-->
+<!--                                </ul>-->
+<!--                                <div class="price">$29<span>/month</span></div>-->
+<!--                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <!-- end of card -->
+
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of cards-2 &ndash;&gt;-->
         <!-- end of pricing -->
 
 
         <!-- Questions -->
-        <div class="accordion-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="h2-heading">Frequent questions</h2>
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="accordion" id="accordionExample">
+<!--        <div class="accordion-1">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                        <h2 class="h2-heading">Frequent questions</h2>-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                        <div class="accordion" id="accordionExample">-->
 
-                            <!-- Accordion Item -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How can I contact you quickly and get a reasonable quote more for my project?</button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">Sed lacinia cursus viverra. Nunc sed libero euismod, congue dui a, vulputate quam. Pellentesque neque nisi, ultrices ut ipsum ac, mattis sollicitudin neque. Ut ac nunc sem. Etiam id erat facilisis magna sagittis porta. Donec eu dolor eu dolor finibus sodales consectetur, et condimentum elit tincidunt</div>
-                                </div>
-                            </div>
-                            <!-- end of accordion-item -->
+<!--                            &lt;!&ndash; Accordion Item &ndash;&gt;-->
+<!--                            <div class="accordion-item">-->
+<!--                                <h2 class="accordion-header" id="headingOne">-->
+<!--                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How can I contact you quickly and get a reasonable quote more for my project?</button>-->
+<!--                                </h2>-->
+<!--                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">-->
+<!--                                    <div class="accordion-body">Sed lacinia cursus viverra. Nunc sed libero euismod, congue dui a, vulputate quam. Pellentesque neque nisi, ultrices ut ipsum ac, mattis sollicitudin neque. Ut ac nunc sem. Etiam id erat facilisis magna sagittis porta. Donec eu dolor eu dolor finibus sodales consectetur, et condimentum elit tincidunt</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; end of accordion-item &ndash;&gt;-->
 
-                            <!-- Accordion Item -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Is the Free Tier available for unlimited time or it will end more words after a while?</button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">Mauris faucibus placerat nisl. Sed eros odio, posuere at felis quis, tincidunt facilisis nibh. Nulla in ante sem. Nam aliquam urna nisi, cursus semper dolor convallis at. Duis vulputate est in consectetur, et condimentum elit tincidunt libero consectetur, et condimentum suis vulputate est in libero</div>
-                                </div>
-                            </div>
-                            <!-- end of accordion-item -->
+<!--                            &lt;!&ndash; Accordion Item &ndash;&gt;-->
+<!--                            <div class="accordion-item">-->
+<!--                                <h2 class="accordion-header" id="headingTwo">-->
+<!--                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Is the Free Tier available for unlimited time or it will end more words after a while?</button>-->
+<!--                                </h2>-->
+<!--                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">-->
+<!--                                    <div class="accordion-body">Mauris faucibus placerat nisl. Sed eros odio, posuere at felis quis, tincidunt facilisis nibh. Nulla in ante sem. Nam aliquam urna nisi, cursus semper dolor convallis at. Duis vulputate est in consectetur, et condimentum elit tincidunt libero consectetur, et condimentum suis vulputate est in libero</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; end of accordion-item &ndash;&gt;-->
 
-                            <!-- Accordion Item -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Can I use the app on mobile devices or it’s limited more words to desktop use?</button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">Nullam at diam at mi facilisis consectetur at non turpis. Proin a felis nisi. Sed at orci rutrum, tincidunt magna vel, pharetra libero. Proin mauris orci, faucibus eget malesuada vel, consectetur, et condimentum elit tincidunt pellentesque vitae ligula. Pellentesque euismod tincidun</div>
-                                </div>
-                            </div>
-                            <!-- end of accordion-item -->
+<!--                            &lt;!&ndash; Accordion Item &ndash;&gt;-->
+<!--                            <div class="accordion-item">-->
+<!--                                <h2 class="accordion-header" id="headingThree">-->
+<!--                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Can I use the app on mobile devices or it’s limited more words to desktop use?</button>-->
+<!--                                </h2>-->
+<!--                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">-->
+<!--                                    <div class="accordion-body">Nullam at diam at mi facilisis consectetur at non turpis. Proin a felis nisi. Sed at orci rutrum, tincidunt magna vel, pharetra libero. Proin mauris orci, faucibus eget malesuada vel, consectetur, et condimentum elit tincidunt pellentesque vitae ligula. Pellentesque euismod tincidun</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; end of accordion-item &ndash;&gt;-->
 
-                        </div> <!-- end of accordion -->
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of accordion-1 -->
+<!--                        </div> &lt;!&ndash; end of accordion &ndash;&gt;-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of accordion-1 &ndash;&gt;-->
         <!-- end of questions -->
 
 
@@ -544,15 +650,21 @@
                     <div class="col-lg-12">
                         <div class="footer-col first">
                             <h6>About Website</h6>
-                            <p class="p-small">Proin ut felis purus vestibulum in orci molestie, efficitur lacus ac pellentesque elit. Fusce mollis laoreet lobortis nulla ac efficitur lacus ac </p>
+                            <p class="p-small">Our Hostel is a safe space where we strive to provide our students with the comforts of a home and the experience of residing within college culture</p>
                         </div> <!-- end of footer-col -->
                         <div class="footer-col second">
-                            <h6>Links</h6>
-                            <ul class="list-unstyled li-space-lg p-small">
-                                <li>Important: <a href="terms.html">Terms & Conditions</a>, <a href="privacy.html">Privacy Policy</a></li>
-                                <li>Useful: <a href="#">Colorpicker</a>, <a href="#">Icon Library</a>, <a href="#">Illustrations</a></li>
-                                <li>Menu: <a href="#header">Home</a>, <a href="#features">Features</a>, <a href="#details">Details</a>, <a href="#pricing">Pricing</a></li>
-                            </ul>
+<!--                            <h6>Links</h6>-->
+                            <h6>contact</h6>
+                            <p class="p-small">{{hostel.Hostel_name}}</p>
+                            <p class="p-small">{{hostel.Address}}</p>
+                            <p class="p-small">{{hostel.Contact_no}}</p>
+                            <p class="p-small">{{hostel.Email}}</p>
+
+<!--                            <ul class="list-unstyled li-space-lg p-small">-->
+<!--                                <li>Important: <a href="terms.html">Terms & Conditions</a>, <a href="privacy.html">Privacy Policy</a></li>-->
+<!--                                <li>Useful: <a href="#">Colorpicker</a>, <a href="#">Icon Library</a>, <a href="#">Illustrations</a></li>-->
+<!--                                <li>Menu: <a href="#header">Home</a>, <a href="#features">Features</a>, <a href="#details">Details</a>, <a href="#pricing">Pricing</a></li>-->
+<!--                            </ul>-->
                         </div> <!-- end of footer-col -->
                         <div class="footer-col third">
                             <span class="fa-stack">
@@ -579,29 +691,29 @@
                                     <i class="fab fa-instagram fa-stack-1x"></i>
                                 </a>
                             </span>
-                            <p class="p-small">Quam posuerei pellent esque vam <a href="mailto:contact@site.com"><strong>contact@site.com</strong></a></p>
+<!--                            <p class="p-small">Quam posuerei pellent esque vam <a href="mailto:contact@site.com"><strong>contact@site.com</strong></a></p>-->
                         </div> <!-- end of footer-col -->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
         </div> <!-- end of footer -->
-        <!-- end of footer -->
+<!--         end of footer -->
 
 
         <!-- Copyright -->
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <p class="p-small">Copyright © <a href="#your-link">Your name</a></p>
-                    </div> <!-- end of col -->
+<!--        <div class="copyright">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-6">-->
+<!--                        <p class="p-small">Copyright © <a href="#your-link">Your name</a></p>-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
 
-                    <div class="col-lg-6">
-                        <p class="p-small">Distributed By<a href="https://themewagon.com/"> Themewagon</a></p>
-                    </div> <!-- end of col -->
-                </div> <!-- enf of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of copyright -->
+<!--                    <div class="col-lg-6">-->
+<!--                        <p class="p-small">Distributed By<a href="https://themewagon.com/"> Themewagon</a></p>-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; enf of row &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of copyright &ndash;&gt;-->
         <!-- end of copyright -->
 
 

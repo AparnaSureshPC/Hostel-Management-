@@ -36,12 +36,14 @@ def update_hosteldetails(request, id):
         h_form = Hosteldetails(request.POST, instance=data)
         if h_form.is_valid():
             h_form.save()
+            messages.info(request, 'Updated Successfully')
             return redirect('view_hosteldetails')
     return render(request, 'admin/update_hosteldetails.html', {'h_form': h_form})
 
 
 def delete_hosteldetails(request, id):
     Hostel.objects.get(id=id).delete()
+    messages.info(request, 'Deleted Successfully')
     return redirect('view_hosteldetails')
 
 
@@ -67,12 +69,14 @@ def update_fooddetails(request, id):
         f_form = FoodDetails(request.POST, instance=data)
         if f_form.is_valid():
             f_form.save()
+            messages.info(request, 'Updated Successfully')
             return redirect('view_fooddetails')
     return render(request, 'admin/update_fooddetails.html', {'f_form': f_form})
 
 
 def delete_fooddetails(request, id):
     Food.objects.get(id=id).delete()
+    messages.info(request, 'Deleted Successfully')
     return redirect('view_fooddetails')
 
 
@@ -82,7 +86,8 @@ def add_notifications(request):
         n_form = notification_details(request.POST)
         if n_form.is_valid():
             n_form.save()
-            return redirect('admin_card')
+            messages.info(request, 'Notification Added')
+            return redirect('view_notifications')
     return render(request, 'admin/add_notifications.html', {'n_form': n_form})
 
 
@@ -98,12 +103,14 @@ def update_notifications(request, id):
         n_form = notification_details(request.POST, instance=data)
         if n_form.is_valid():
             n_form.save()
+            messages.info(request, 'Updated Successfully')
             return redirect('view_notifications')
     return render(request, 'admin/update_notifications.html', {'n_form': n_form})
 
 
 def delete_notifications(request, id):
     Notifications.objects.get(id=id).delete()
+    messages.info(request, 'Notification Deleted')
     return redirect('view_notifications')
 
 
@@ -121,7 +128,7 @@ def add_warden(request):
             warden.user = user
             warden.save()
             messages.info(request, 'Registered Successfully')
-            return redirect('admin_card')
+            return redirect('view_warden')
     return render(request, 'admin/add_warden.html', {'u_form': u_form, 'w_form': w_form})
 
 
@@ -137,6 +144,7 @@ def update_warden(request, id):
         w_form = warden_details(request.POST, request.FILES, instance=data)
         if w_form.is_valid():
             w_form.save()
+            messages.info(request, 'Updated Successfully')
             return redirect('view_warden')
     return render(request, 'admin/update_warden.html', {'w_form': w_form})
 
@@ -144,11 +152,9 @@ def update_warden(request, id):
 def delete_warden(request, id):
     data1 = Warden.objects.get(user_id=id)
     data = User.objects.get(warden=data1)
-    if request.method == "POST":
-        data.delete()
-        return redirect('view_warden')
-    else:
-        return redirect('view_warden')
+    data.delete()
+    messages.info(request, 'Deleted Successfully')
+    return redirect('view_warden')
 
 
 def view_student_registration(request):
@@ -172,11 +178,9 @@ def approve_student(request, id):
 def reject_student(request, id):
     data1 = Student.objects.get(user_id=id)
     data = User.objects.get(student=data1)
-    if request.method == "POST":
-        data.delete()
-        return redirect('view_student_registration')
-    else:
-        return redirect('view_student_registration')
+    data.delete()
+    messages.info(request, 'Deleted Successfully')
+    return redirect('view_student_registration')
 
 
 def approve_parent(request, id):
@@ -190,11 +194,9 @@ def approve_parent(request, id):
 def reject_parent(request, id):
     data1 = Parent.objects.get(user_id=id)
     data = User.objects.get(parent=data1)
-    if request.method == 'POST':
-        data.delete()
-        return redirect('view_parent_registration')
-    else:
-        return redirect('view_parent_registration')
+    data.delete()
+    messages.info(request, 'Deleted Successfully')
+    return redirect('view_parent_registration')
 
 
 def view_room_booked(request):
@@ -234,7 +236,6 @@ def confirm_room_booked(request, id):
         book = BookRoom.objects.get(id=id)
         book.status = 1
         book.save()
-
         hstl = Hostel.objects.all().last()  # validation ie the last
         Vacant_rooms = hstl.Vacant_rooms
         hstl.Vacant_rooms = int(Vacant_rooms) - 1
@@ -273,9 +274,12 @@ def mark_attendance(request, id):
     else:
         if request.method == 'POST':
             a = request.POST.get('attendance')
-            Attendance(student=user, date=datetime.date.today(), attendance=a, time=now.time()).save()
-            messages.info(request, 'Attendance Added Successfully')
-            return redirect('add_attendance')
+            if a is None:
+                messages.info(request, 'Attendance must be marked')
+            else:
+                Attendance(student=user, date=datetime.date.today(), attendance=a, time=now.time()).save()
+                messages.info(request, 'Attendance Added Successfully')
+                return redirect('add_attendance')
     return render(request, 'admin/mark_attendance.html')
 
 
@@ -302,15 +306,17 @@ def add_payment(request):
         form = PaymentForm(request.POST)
         if form.is_valid():
             payment_form = form.save(commit=False)
-            latest_hostel = Hostel.objects.all().last()
-            payment_form.hostel = latest_hostel
             payment_form.bill_no = payment_form.student.pk
             # print(payment_form.student)  # name is printed
             payment_qs = Payment.objects.filter(student=payment_form.student,
                                                 bill_start_date=payment_form.bill_start_date,
                                                 bill_end_date=payment_form.bill_end_date)
-            payment_qs2 = Payment.objects.filter(student=payment_form.student,bill_end_date=payment_form.bill_end_date)
-            if payment_qs.exists():
+            payment_qs2 = Payment.objects.filter(student=payment_form.student, bill_end_date=payment_form.bill_end_date)
+            booking = BookRoom.objects.get(student=payment_form.student, status=1)
+            print(booking.status)
+            if booking.status == 2:
+                messages.info(request, 'Booking Rejected')
+            elif payment_qs.exists():
                 messages.info(request, 'Payment already added for this student in this duration')
             elif payment_qs2.exists():
                 messages.info(request, 'Payment already added for this student in this duration')
@@ -325,11 +331,12 @@ def payment_load_to_form(request):
     selected_student_id = request.GET.get('studentId')
     student = Student.objects.get(user_id=selected_student_id)
     if not Payment.objects.filter(student=student).exists():
-        booking = BookRoom.objects.get(student=student)
+        booking = BookRoom.objects.get(student=student, status=1)
         bill_start_date = booking.booking_date
         current_month = bill_start_date.month
         last_day = calendar.monthrange(bill_start_date.year, current_month)[1]
         bill_end_date = bill_start_date.replace(day=last_day)
+
     else:
         current_date = datetime.date.today()
         last_date_previous_month = current_date.replace(day=1) - timedelta(days=1)
@@ -339,14 +346,14 @@ def payment_load_to_form(request):
     present_days = Attendance.objects.filter(student=student, date__range=[bill_start_date, bill_end_date]).count()
     mess_bill = present_days * 60
     hostel = Hostel.objects.all().last()
+    hostel.Rent = ''.join(hostel.Rent[:-2])
     amount = int(hostel.Rent) + mess_bill
     data = {
         'bill_start_date': bill_start_date,
         'bill_end_date': bill_end_date,
         'mess_bill': mess_bill,
-        'amount': amount
+        'amount': amount,
     }
-
     return JsonResponse(data)
 
 

@@ -1,6 +1,19 @@
 {% extends 'warden_page.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<style>
+    .table {
+        font-size: 15px;
+    }
+
+
+    .table td {
+        max-width: 15px; /* Set the max-width to control when text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word;white-space:normal;
+    }
+
+</style>
 <script>
     window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -28,10 +41,10 @@
   <th>SL NO</th>
     <th>Name</th>
   <th>Date</th>
-  <th>Time</th>
+
   <th>Leave From</th>
     <th>Leave To</th>
-      <th>Total Leave Days</th>
+      <th>Leave Days</th>
     <th>Reason</th>
       <th>Status</th>
   </tr>
@@ -42,16 +55,19 @@
     <td>{{forloop.counter}}</td>
     <td>{{i.user}}</td>
     <td>{{i.current_date}}</td>
-    <td>{{i.current_time}}</td>
+
       <td>{{i.leave_from}}</td>
       <td>{{i.leave_to}}</td>
       <td>{{i.total_leave_days}}</td>
       <td>{{i.reason}}</td>
-    <td>{% if i.status == 0 %}
-    <a href="{% url 'warden_approve_leave' i.id %}" class="btn-sm btn btn-primary">Approve</a>
-       <a href="{% url 'warden_reject_leave' i.id %}" class="btn-sm btn btn-danger">Reject</a>
+    <td >
+        {% if i.status == 0 %}
+    <a style="display: inline-block;margin-bottom:5px;
+  width: 80px;"href="{% url 'warden_approve_leave' i.id %}" class="btn-sm btn btn-primary">Approve</a>
+       <a style="display: inline-block;
+  width: 80px; "href="{% url 'warden_reject_leave' i.id %}" class="btn-sm btn btn-danger">Reject</a>
       {% elif i.status == 1 %}
-      <a href="{% url 'warden_approve_leave' i.id %}" class="btn-sm btn btn-success">Approved</a>
+      <a href="{% url 'warden_approve_leave' i.id %}" class="btn-sm btn btn-primary">Approved</a>
       {% else %}
       <a href="{% url 'warden_reject_leave' i.id %}" class="btn-sm btn btn-danger">Rejected</a>
       {% endif %}

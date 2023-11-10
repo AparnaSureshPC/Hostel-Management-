@@ -11,7 +11,19 @@ from app.models import Hostel, Food, Notifications, Reviews, Student, Complaints
 
 
 def card(request):
-    return render(request, 'student/card.html')
+    student = Student.objects.get(user=request.user)
+    payments_qs = Payment.objects.filter(student=student, status=0)
+    print(payments_qs)
+    overdue_payments_exist = False
+    for payment in payments_qs:
+        if payment.bill_due_date > datetime.date.today():
+            overdue_payments_exist = True
+            break
+
+    context = {
+            'overdue_payments_exist': overdue_payments_exist
+        }
+    return render(request, 'student/card.html', context)
 
 
 def view_student_hostel_details(request):
@@ -37,8 +49,8 @@ def add_student_reviews(request):
         f = r_form.save(commit=False)
         f.student = s  # student is relative name
         f.save()
-        messages.info(request, 'Your Review Send Successfully')
-        return redirect('view_student_reviews')
+        messages.info(request, 'Your Review Added Successfully')
+        return redirect('card')
     return render(request, 'student/add_reviews.html', {'r_form': r_form})
 
 
@@ -55,7 +67,8 @@ def update_student_reviews(request, id):
         r_form = review_form(request.POST, instance=data)
         if r_form.is_valid():
             r_form.save()
-            return redirect('view_student_reviews')
+            messages.info(request, 'Review Updated')
+            return redirect('card')
     return render(request, 'student/update_reviews.html', {'r_form': r_form})
 
 
@@ -74,7 +87,7 @@ def add_student_complaints(request):
             obj.user = u
             obj.save()
             messages.info(request, 'Complaint added successfully')
-            return redirect('view_student_complaints')
+            return redirect('card')
     return render(request, 'student/add_complaints.html', {'c_form': c_form})
 
 
@@ -92,12 +105,14 @@ def student_book_room(request):
                 commit=False)  # form only has the datefield so we have to call objects right to set the student and all
             book.student = Student.objects.get(
                 user=request.user)  # user has all student details still we try to get it from student objects
-            # book.student = request.user  # we are getting the name instead of username because of foreign key
+            # book.student = request.user  # we are getting the name because of foreign key we have given a string function to return name
             book.booking_date = form.cleaned_data.get('booking_date')
             book.booked_by = request.user
-            student_qs = BookRoom.objects.filter(student=Student.objects.get(user=request.user))
-            if student_qs.exists():
-                messages.info(request, ' You Have Already Booked Room')
+            booking = BookRoom.objects.filter(student=Student.objects.get(user=request.user)).last()
+            if booking.status == 0 or booking.status == 1:
+                messages.info(request, 'Already Booked')
+            elif book.booking_date <= datetime.date.today():
+                messages.info(request, 'Invalid booking date')
             else:
                 book.save()
                 messages.info(request, 'Successfully Booked Room')
@@ -106,9 +121,10 @@ def student_book_room(request):
 
 
 def student_booking_status(request):
-    student = Student.objects.get(user=request.user)  # that particular student who booked the room. its foreign key
+    student = Student.objects.get(user=request.user)
+    # that particular student who booked the room. its foreign key
     data = BookRoom.objects.filter(
-        student=student)  # student is field in model bookroom .we can  give booked_by=request.user instead
+        student=student).last()  # student is field in model bookroom .we can  give booked_by=request.user instead
     return render(request, 'student/booking_status.html', {'data': data})
 
 
@@ -211,4 +227,4 @@ def success_return(request):
 def student_delete_account(request):
     request.user.delete()
     messages.info(request, 'Account deleted Successfully')
-    return redirect('card')
+    return redirect('loginpage')

@@ -1,13 +1,15 @@
 {% extends 'admin_page.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="card card_style">
-    <div class="card-body ">
+
+<div class="card-header card_style bg-primary" style="color:white" >
+    <strong class="card-title" >Add Staff</strong>
+    <div class="card-body" >
         <form method="post", enctype="multipart/form-data">
     {% csrf_token %}
     {{u_form|crispy}}
     {{w_form|crispy}}
-    <button type="submit" class="submit_button">submit</button>
+    <button type="submit" class="btn btn-light">submit</button>
 </form>
     </div>
 </div>

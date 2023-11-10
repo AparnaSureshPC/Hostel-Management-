@@ -1,12 +1,14 @@
 {% extends 'student_page.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="card card_style ">
+
+<div class="card-header  card_style bg-primary" style="color:white" >
+    <strong class="card-title" >Add Complaints</strong>
 <div class="card-body">
 <form method="post">
   {% csrf_token %}
   {{c_form|crispy}}
-   <button type="submit" class="submit_button">submit</button>
+   <button type="submit" class="btn btn-light">submit</button>
 </form>
 </div>
 </div>

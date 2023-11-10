@@ -1,0 +1,53 @@
+{% extends 'warden_page.html' %}
+{% block content %}
+<style>
+    .table {
+        font-size: 15px;
+    }
+
+
+    .table td {
+        max-width: 15px; /* Set the max-width to control when text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word;white-space:normal;
+    }
+
+
+
+</style>
+        <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Bookings</p></div>
+<table class="table table-hover" style="font-size:15px">
+  <thead>
+  <tr class="table-light">
+  <th>SL NO</th>
+    <th>Student</th>
+  <th>Booked By</th>
+  <th>Booked To</th>
+  <th>Booked On</th>
+    <th>Status</th>
+
+  </tr>
+  </thead>
+  {% for i in data %}
+  <tbody>
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.student}}</td>
+    <td>{{i.booked_by}}</td>
+    <td>{{i.booking_date}}</td>
+    <td>{{i.date}}</td>
+     <td>
+       {% if i.status == 1 %}
+       <p style="color:#4B49AC;font-weight:600">CONFIRMED</p>
+       {% elif i.status == 0 %}
+       <p style="color:#4B49AC;font-weight:600"> NOT CONFIRMED</p>
+       {% else %}
+       <p style="color:red;font-weight:600">REJECTED</p>
+       {% endif %}
+       </td>
+  </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endblock %}

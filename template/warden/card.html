@@ -3,7 +3,7 @@
 {% block content %}
 <style>
     .parent {
-  width: 300px;
+  width: 400px;
   padding: 20px;
   perspective: 1000px;
 }
@@ -87,7 +87,7 @@
   top: 30px;
   left: 25px;
   height: 60px;
-  width: 60px;
+  width: 100px;
   background: linear-gradient(45deg, rgb(255, 255, 255) 0%, #d8d8d8 100%);
   border-left: 2px solid rgb(7, 185, 255);
   border-radius: 10px;
@@ -119,14 +119,14 @@
   <div class="card">
       <div class="content-box">
           <span class="card-title">WELCOME BACK {{request.user}}</span>
-          <p class="card-content">
+<!--          <p class="card-content">-->
 
-          </p>
-          <span class="see-more">See More</span>
+<!--          </p>-->
+<!--          <span class="see-more">See More</span>-->
       </div>
       <div class="date-box">
-          <span class="month">JUNE</span>
-          <span class="date">29</span>
+          <span class="month">{% now "jS F Y " %}</span>
+<!--          <span class="date">29</span>-->
       </div>
   </div>
 </div>

@@ -3,12 +3,13 @@ from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 # Create your views here.
 from app.forms import UserRegister, Studentreg, Parentreg
-from app.models import Reviews, Student
+from app.models import Reviews, Student, Hostel
 
 
 def homepage(request):
+    hostel = Hostel.objects.all().last()
     reviews = Reviews.objects.all()
-    return render(request, 'index.html', {'reviews': reviews})
+    return render(request, 'index.html', {'reviews': reviews,'hostel': hostel})
 
 
 def loginpage(request):
@@ -97,22 +98,7 @@ def log_out(request):
     return redirect('homepage')
 
 
-def st_reg(request):
-    # u_form=UserRegister()#we have imported these forms
-    # s_form=Studentreg()
-    # if request.method=='POST':
-    #     u_form=UserRegister(request.POST)
-    #     s_form=Studentreg(request.POST,request.FILES)
-    #     if u_form.is_valid() and s_form.is_valid():
-    #         user=u_form.save(commit=False)
-    #         user.is_student=True
-    #         user.save()
-    #         student=s_form.save(commit=False)
-    #         student.user=user
-    #         student.save()
-    #         messages.info(request,'Registered Successfully')
-    #         return redirect('loginpage')
-    return render(request, 'register.html')
+
 
 
 

@@ -2,21 +2,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% for i in messages %}
+
 <div class="alert alert-info " id="alert">
     {{i}}
 </div>
 {% endfor %}
-<div class=" card card_style border border-dark">
+<div class=" card card_style border border-dark  "style="color:#4B49AC;font-weight:600" >
     <div class="card-header">ADD PAYMENT</div>
 <div class="card-body">
    <form method="post" id="form" data-fee-url="{% url 'payment_load_to_form' %}">
   {% csrf_token %}
   {{ form|crispy }}
-<!--       <div id="error_message">-->
-<!--           {% if error_message %}-->
-<!--               {{ error_message }}-->
-<!--          {% endif %}-->
-<!--       </div>-->
+
+<div id="roomBookingMessage" style="color: red;"></div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
@@ -31,6 +29,7 @@
           },3000);
 
           $('#id_student').change(function(){
+          console.log('hi')
              const url = $('#form').attr('data-fee-url');
              const studentId = $(this).val();
              $.ajax({
@@ -43,6 +42,7 @@
                  $('#id_bill_end_date').val(data.bill_end_date);
                  $('#id_mess_bill').val(data.mess_bill);
                  $('#id_amount').val(data.amount);
+
                  }
              });
           });

@@ -54,7 +54,7 @@ class Hostel(models.Model):
         return self.Hostel_name
 
 
-DAYS = (
+DAYS = (('', 'Select the day'),
     ('Sunday', 'Sunday'),
     ('Monday', 'Monday'),
     ('Tuesday', 'Tuesday'), ('Wednesday', 'Wednesday'),
@@ -117,8 +117,8 @@ class BookRoom(models.Model):
     status = models.IntegerField(default=0)
     booked_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.student
+    # def __str__(self):
+    #     return self.student
 
 
 class Attendance(models.Model):
@@ -164,7 +164,7 @@ class InOut(models.Model):
 
 def calculate_bill_due_date():
     # Calculate the default due date, e.g., 10 days from today
-    due_date = datetime.now() + timedelta(days=15)
+    due_date = datetime.now() + timedelta(days=5)
     return due_date.strftime('%Y-%m-%d')
 
 

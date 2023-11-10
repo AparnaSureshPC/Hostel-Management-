@@ -3,7 +3,7 @@
 {% block content %}
 <style>
     .parent {
-  width: 300px;
+  width: 400px;
   padding: 20px;
   perspective: 1000px;
 }
@@ -87,7 +87,7 @@
   top: 30px;
   left: 25px;
   height: 60px;
-  width: 60px;
+  width: 100px;
   background: linear-gradient(45deg, rgb(255, 255, 255) 0%, #d8d8d8 100%);
   border-left: 2px solid rgb(7, 185, 255);
   border-radius: 10px;
@@ -114,19 +114,60 @@
 }
 
 </style>
+<script>
+    window.setTimeout(function() {
+    $(".alert_msg").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+
+}, 3000);
+
+   function hideAlert() {
+        $("#overdueAlert").fadeOut("slow", function () {
+            $(this).remove();
+        });
+    }
+ $(document).ready(function () {
+        if (!{{ overdue_payments_exist|yesno:"true,false" }}) {
+            setTimeout(hideAlert, 3000);
+        }
+    });
+</script>
+
+  <div class="column">
+            <div class="col-lg-12">
+                {% for i in messages %}
+                <div class="alert alert_msg alert-info alert-dismissible" role="alert">
+                    {{i}}
+                </div>
+                {% endfor %}
+            </div>
+                                </div>
+
+<div class="column">
+    <div class="col-lg-12">
+        {% if overdue_payments_exist %}
+            <div class="alert alert-danger alert-dismissible"id="overdueAlert">
+                 payment passed the due date
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Rest of your HTML -->
 
 <div class="parent">
   <div class="card">
       <div class="content-box">
           <span class="card-title">WELCOME BACK {{request.user}}</span>
-          <p class="card-content">
+<!--          <p class="card-content">-->
 
-          </p>
-          <span class="see-more">See More</span>
+<!--          </p>-->
+<!--          <span class="see-more">See More</span>-->
       </div>
       <div class="date-box">
-          <span class="month">JUNE</span>
-          <span class="date">29</span>
+          <span class="month">{% now "jS F Y " %}</span>
+<!--          <span class="date">29</span>-->
       </div>
   </div>
 </div>

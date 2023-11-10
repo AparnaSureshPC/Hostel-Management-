@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from app.forms import InOutForm
-from app.models import Hostel, Parent, Student, Complaints, Reviews, ParentReviews, LeaveApplication, InOut
+from app.models import Hostel, Parent, Student, Complaints, Reviews, ParentReviews, LeaveApplication, InOut, Payment, \
+    Food, BookRoom
 
 
 def warden_card(request):
@@ -14,6 +15,16 @@ def warden_card(request):
 def view_warden_hostel(request):
     data = Hostel.objects.all()
     return render(request, 'warden/view_hosteldetails.html', {'data': data})
+
+
+def view_warden_food(request):
+    data = Food.objects.all()
+    return render(request, 'warden/view_warden_food.html', {'data': data})
+
+
+def view_payments(request):
+    data = Payment.objects.all()
+    return render(request, 'warden/view_payments.html', {'data': data})
 
 
 def warden_view_parents(request):
@@ -29,6 +40,11 @@ def warden_view_students(request):
 def warden_view_complaints(request):
     complaints = Complaints.objects.all()
     return render(request, 'warden/view_complaints.html', {'complaints': complaints})
+
+
+def view_bookings(request):
+    data = BookRoom.objects.filter(status=1)
+    return render(request, 'warden/view_bookings.html', {'data': data})
 
 
 def warden_view_reviews(request):
@@ -96,3 +112,14 @@ def update_student_inout(request, id):
             form.save()
             return redirect('view_student_inout')
     return render(request, 'warden/update_student_inout.html', {'form': form})
+
+
+def delete_account(request):
+    request.user.delete()
+    messages.info(request, 'Account deleted Successfully')
+    return redirect('loginpage')
+
+
+
+
+

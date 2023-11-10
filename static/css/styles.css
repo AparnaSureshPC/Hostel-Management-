@@ -40,7 +40,7 @@ html {
 }
 
 body, p {
-	color: #565578;
+	color: #565578; 
 	font: 400 1rem/1.625rem "Open Sans", sans-serif;
 }
 
@@ -93,7 +93,6 @@ h6 {
 .p-large {
 	font-size: 1.125rem;
 	line-height: 1.75rem;
-	color:#fff2dc;font-weight:bold
 }
 
 .p-small {
@@ -253,7 +252,6 @@ a:hover {
 	line-height: 0;
 	text-decoration: none;
 	transition: all 0.2s;
-
 }
 
 .btn-outline-sm:hover {
@@ -464,16 +462,8 @@ a:hover {
 .header {
 	padding-top: 8rem;
 	padding-bottom: 9rem;
-	/* background-color: #fff2dc;*/
-
+	background-color: #fff2dc;
 	text-align: center;
-}
-.body-image{
-background-image:url('https://c8.alamy.com/comp/2G4BERX/hostel-for-young-people-concept-positive-girls-friends-cartoon-characters-sitting-sharing-one-room-in-hostel-or-hotel-chatting-communicating-together-vector-illustration-2G4BERX.jpg');
-	background-repeat:no repeat;
-	background-size:cover;
-	height:700px;
-
 }
 
 .header .h1-large {
@@ -1106,14 +1096,14 @@ background-image:url('https://c8.alamy.com/comp/2G4BERX/hostel-for-young-people-
 @media (min-width: 768px) {
 
 	/* Header */
-	/*.header {
+	.header {
 		padding-top: 9rem;
 	}
 
 	.header .h1-large {
 		font-size: 3.75rem;
 		line-height: 4.625rem;
-	}*/
+	}
 	/* end of header */
 
 
@@ -1398,9 +1388,8 @@ background-image:url('https://c8.alamy.com/comp/2G4BERX/hostel-for-young-people-
 	/* Header */
 	.header {
 		overflow: hidden;
-	/*	padding-top: 18.5rem;*/
+		padding-top: 18.5rem;
 		padding-bottom: 18rem;
-
 	}
 
 	.header .image-container {
@@ -1412,7 +1401,7 @@ background-image:url('https://c8.alamy.com/comp/2G4BERX/hostel-for-young-people-
 		top: -180px;
 		left: -10px;
 		width: 840px;
-		max-width: none;height:710px
+		max-width: none;
 	}
 	/* end of header */
 
@@ -1515,5 +1504,3 @@ background-image:url('https://c8.alamy.com/comp/2G4BERX/hostel-for-young-people-
 	/* end of extra pages */
 }
 /* end of min-width 1200px */
-.fixed-top{position:fixed;top:0;z-index:1030}
-.col-lg-6{flex:0 0 auto;width:50%;margin-top:100px;}

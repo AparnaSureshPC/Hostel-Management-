@@ -1,0 +1,61 @@
+{% extends 'warden_page.html' %}
+{% block content %}
+{% load static %}
+ <script src="https://js.stripe.com/v3/"></script>
+ <script src="{% static 'main.js' %}"></script>
+<style>
+    .table {
+        font-size: 15px;
+    }
+
+
+    .table td {
+        max-width: 15px; /* Set the max-width to control when text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word;white-space:normal;
+    }
+
+</style>
+ <div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Payments </p></div>
+<table class="table table-hover">
+  <thead>
+<tr class="table-light">
+    <th>SL NO</th>
+    <th>Student</th>
+    <th>Bill date</th>
+    <th>Bill no</th>
+    <th>Bill start date</th>
+    <th>Bill end date</th>
+    <th>Bill due date</th>
+    <th>Amount</th>
+    <th>Bill</th>
+    <th>Status</th>
+
+  </tr>
+  </thead>
+  {% for i in data %}
+  <tbody>
+  <tr class="table-secondary">
+    <td>{{forloop.counter}}</td>
+    <td>{{i.student}}</td>
+    <td>{{i.bill_date}}</td>
+    <td>{{i.bill_no}}</td>
+    <td>{{i.bill_start_date}}</td>
+    <td>{{i.bill_end_date}}</td>
+    <td>{{i.bill_due_date}}</td>
+    <td>{{i.amount}}</td>
+    <td><a href="{% url 'student_view_bill' i.id %}">Bill</a></td>
+   <td>
+    {% if i.status == 0 %}
+   <button class="btn-sm btn btn-primary" style="width:80px">Not Paid</button>
+           {% else %}
+    <button class="btn-sm btn btn-primary" style="width:80px">Paid</button>
+    {% endif %}
+</td>
+
+  </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}

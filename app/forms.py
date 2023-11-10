@@ -69,6 +69,10 @@ class Parentreg(forms.ModelForm):
         model = Parent
         exclude = ('user', "approval_status")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['student_name'].empty_label = "select the student"
+
     def clean_email(self):
         mail = self.cleaned_data['email']
         email_qs_stu = Student.objects.filter(email=mail)
@@ -126,7 +130,7 @@ class warden_details(forms.ModelForm):
         mail = self.cleaned_data['email']
         email_qs_stu = Student.objects.filter(email=mail)
         email_qs_parent = Parent.objects.filter(email=mail)
-        email_qs_warden = Warden.objects.filter(email=mail)
+        email_qs_warden = Warden.objects.filter(email=mail).exclude(user_id=self.instance.user_id)
         if email_qs_stu.exists() or email_qs_parent.exists() or email_qs_warden.exists():
             raise forms.ValidationError('Email already linked with another account')
         return mail
@@ -135,7 +139,7 @@ class warden_details(forms.ModelForm):
         phone_num = self.cleaned_data['phone_no']
         phone_qs_stu = Student.objects.filter(phone_no=phone_num)
         phone_qs_parent = Parent.objects.filter(phone_no=phone_num)
-        phone_qs_warden = Warden.objects.filter(phone_no=phone_num)
+        phone_qs_warden = Warden.objects.filter(phone_no=phone_num).exclude(user_id=self.instance.user_id)
         if phone_qs_stu.exists() or phone_qs_parent.exists() or phone_qs_warden.exists():
             raise ValidationError('Number already linked with another account')
         return phone_num
@@ -159,13 +163,6 @@ class BookRoomForm(forms.ModelForm):
     class Meta:
         model = BookRoom
         fields = ('booking_date',)
-
-        def clean_date_joining(self):
-            date = self.cleaned_data['booking_date']
-
-            if date < datetime.date.today():
-                raise forms.ValidationError('Invalid for')
-            return date
 
 
 attendance_status = (
@@ -203,9 +200,21 @@ class InOutForm(forms.ModelForm):
         super().__init__(*args, **kwargs)  # call the parent class(forms.ModelForm) constructor
         self.fields['student'].empty_label = 'select the student'
 
+        booking_students = BookRoom.objects.filter(status=1).values_list('student', flat=True).distinct()
+        self.fields['student'].queryset = Student.objects.filter(pk__in=booking_students)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        in_time = cleaned_data.get('in_time')  # Assuming 'in_time' is a field in your form
+
+        if in_time:
+            cleaned_data['status'] = 1
+
+        return cleaned_data
+
 
 class PaymentForm(forms.ModelForm):
-    student = forms.ModelChoiceField(queryset=Student.objects.filter(approval_status=1))
+    student = forms.ModelChoiceField(queryset=Student.objects.none())
     bill_start_date = forms.DateField(widget=Date)
     bill_end_date = forms.DateField(widget=Date)
     mess_bill = forms.FloatField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
@@ -219,9 +228,18 @@ class PaymentForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Add a default choice to the student field
         self.fields['student'].empty_label = "select the student"
+        booking_students = BookRoom.objects.filter(status=1).values_list('student', flat=True).distinct()
+        self.fields['student'].queryset = Student.objects.filter(pk__in=booking_students)
 
     def clean(self):
         cleaned_data = super().clean()
+        student = cleaned_data.get('student')
         bill_end_date = cleaned_data.get('bill_end_date')
+        bill_start_date = cleaned_data.get('bill_start_date')
         if bill_end_date.month == datetime.date.today().month:
             raise forms.ValidationError('Fee cannot be calculated for the current month')
+        elif not Payment.objects.filter(student=student).exists():
+            booking = BookRoom.objects.get(student=student, status=1)
+            if bill_start_date != booking.booking_date:
+                raise forms.ValidationError('Student joined this month')
+

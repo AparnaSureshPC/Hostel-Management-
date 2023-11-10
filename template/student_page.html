@@ -132,10 +132,10 @@ width: 40rem;margin:auto;margin-top:30px}
               <img src="{{request.user.student.photo.url}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
-                Settings
-              </a>
+<!--              <a class="dropdown-item">-->
+<!--                <i class="ti-settings text-primary"></i>-->
+<!--                Settings-->
+<!--              </a>-->
               <a class="dropdown-item" href="{% url 'log_out' %}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
@@ -408,7 +408,7 @@ width: 40rem;margin:auto;margin-top:30px}
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{% url 'student_view_fee' %}"> Pay Now </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'view_notifications' %}"> Pay Status </a></li>
+<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'view_notifications' %}"> Pay Status </a></li>-->
               </ul>
             </div>
           </li>
@@ -438,19 +438,19 @@ width: 40rem;margin:auto;margin-top:30px}
               </ul>
             </div>
           </li>
-<!--           <li class="nav-item">-->
-<!--            <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#parent" aria-controls="parent" >-->
-<!--              <i class="icon-head menu-icon"></i>-->
-<!--              <span class="menu-title">Parents</span>-->
-<!--              <i class="menu-arrow"></i>-->
-<!--            </a>-->
-<!--            <div class="collapse" id="parent" >-->
-<!--              <ul class="nav flex-column sub-menu">-->
-<!--                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/samples/login.html' %}"> Registration </a></li>-->
+           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#parent" aria-controls="parent" >
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Account</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="parent" >
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href='#' data-toggle="modal" data-target="#myModal">Delete </a></li>
 
-<!--              </ul>-->
-<!--            </div>-->
-<!--          </li>-->
+              </ul>
+            </div>
+          </li>
 <!--               <li class="nav-item">-->
 <!--            <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#students" aria-controls="students" >-->
 <!--              <i class="icon-head menu-icon"></i>-->
@@ -523,7 +523,7 @@ width: 40rem;margin:auto;margin-top:30px}
         </div>
         <div class="modal-footer border-0 ">
 <!--          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-        <a href="{% url 'parent_delete_account' %}" class="btn-sm btn btn-danger">Delete</a>
+        <a href="{% url 'student_delete_account' %}" class="btn-sm btn btn-danger">Delete</a>
         <button type="button" class="btn-sm btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>

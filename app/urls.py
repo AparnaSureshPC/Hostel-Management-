@@ -53,6 +53,7 @@ urlpatterns = [
     path('delete_student_reviews/<int:id>/', student_views.delete_student_reviews, name='delete_student_reviews'),
     path('add_student_complaints', student_views.add_student_complaints, name="add_student_complaints"),
     path('view_student_complaints', student_views.view_student_complaints, name='view_student_complaints'),
+    path('student_delete_account', student_views.student_delete_account, name="student_delete_account"),
     path('view_complaints', admin_views.view_complaints, name='view_complaints'),
     path('complaint_reply/<int:id>/', admin_views.complaint_reply, name='complaint_reply'),
     path('student_book_room', student_views.student_book_room, name='student_book_room'),
@@ -90,7 +91,7 @@ urlpatterns = [
     path('checkout_session/<int:id>/', parent_views.checkout_session, name='checkout_session'),
     path('pay_success/', parent_views.pay_success, name='pay_success'),
     path('pay_cancelled', parent_views.pay_cancelled, name='pay_cancelled'),
-    path('success_return', parent_views.success_return, name='success_return'),
+    path('payment_success_return', parent_views.payment_success_return, name='payment_success_return'),
     path('warden_view_parents', warden_views.warden_view_parents, name='warden_view_parents'),
     path('warden_view_students', warden_views.warden_view_students, name='warden_view_students'),
     path('warden_view_complaints', warden_views.warden_view_complaints, name='warden_view_complaints'),
@@ -106,6 +107,10 @@ urlpatterns = [
     path('view_student_inout', warden_views.view_student_inout, name='view_student_inout'),
     path('date_based_inout/<date>/', warden_views.date_based_inout, name='date_based_inout'),
     path('update_student_inout/<int:id>/', warden_views.update_student_inout, name='update_student_inout'),
-    path('st_reg', views.st_reg, name='st_reg'),
+    path('view_payments', warden_views.view_payments, name='view_payments'),
+    path('view_warden_food', warden_views.view_warden_food, name='view_warden_food'),
+    path('view_bookings', warden_views.view_bookings, name='view_bookings'),
+    path('delete_account', warden_views.delete_account, name='delete_account')
+
 
 ]

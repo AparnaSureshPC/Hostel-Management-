@@ -8,29 +8,46 @@
         font-size: 15px;
     }
 
-    .table-secondary td {
-        white-space: normal; /* Allow text to wrap to the next line */
 
-}
-
-
-.table td {
-    width: 10%;
-    white-space: normal; /* Allow text to wrap to the next line */
-}
-
-
+    .table td {
+        max-width: 15px; /* Set the max-width to control when text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word;white-space:normal;
+    }
 
 </style>
-<div class="card-header bg-primary" >
-    <strong class="card-title" style="color:white">Student Registration</strong>
- <div class="card-body">
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+
+}, 4000);
+
+
+</script>
+
+ <div class="column">
+     <div class="col-lg-12">
+         {% for i in messages %}
+         <div class="alert alert-info" role="alert" id="alert">
+             {{i}}
+         </div>
+         {% endfor %}
+     </div>
+
+ </div>
+<!--<div class="card-header bg-primary" >-->
+<!--    <strong class="card-title" style="color:white">Student Registration</strong>-->
+<!-- <div class="card-body">-->
+<div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Hostel Details</p></div>
 <table class="table table-hover" style="font-size:15px">
     <thead>
     <tr class="table-light">
       <th> NAME</th>
-        <th>ROOM FACILITIES</th>
-        <th>VACANT ROOMS</th>
+        <th>FACILITIES</th>
+        <th>VACANT</th>
         <th>RENT</th>
         <th>ADDRESS</th>
         <th>EMAIL</th>
@@ -51,13 +68,13 @@
          <td>{{i.Email}}</td>
          <td>{{i.Contact_no}}</td>
          <td><img src="{{i.Photo.url}}" ></td>
-        <td><a href="{% url 'update_hosteldetails' i.id %}" class=" update  btn btn-success btn-sm">update</a></td>
+        <td><a href="{% url 'update_hosteldetails' i.id %}" class=" update  btn btn-primary btn-sm">update</a></td>
          <td><a href="{% url 'delete_hosteldetails' i.id %}" class=" delete btn btn-danger btn-sm">delete</a></td>
     </tr>
 
 {% endfor %}
   </tbody>
 </table>
- </div>
-</div>
+<!-- </div>-->
+<!--</div>-->
 {% endblock %}

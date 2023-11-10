@@ -2,6 +2,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% for i in messages %}
+<style>
+    .table {
+        font-size: 15px;
+    }
+
+
+    .table td {
+        max-width: 15px; /* Set the max-width to control when text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word;white-space:normal;
+    }
+
+</style>
 <div class="alert alert-info" id="alert">
     {{i}}
 </div>
@@ -13,11 +26,11 @@
   <tr class="table-light">
   <th>SL NO</th>
     <th>Student</th>
-    <th>Bill date</th>
-    <th>Bill no</th>
+<!--    <th>Bill date</th>-->
+<!--    <th>Bill no</th>-->
     <th>Bill start date</th>
     <th>Bill end date</th>
-    <th>Bill due date</th>
+<!--    <th>Bill due date</th>-->
     <th>Amount</th>
     <th>Bill</th>
     <th>Status</th>
@@ -30,11 +43,11 @@
   <tr class="table-secondary">
     <td>{{forloop.counter}}</td>
     <td>{{i.student}}</td>
-    <td>{{i.bill_date}}</td>
-    <td>{{i.bill_no}}</td>
+<!--    <td>{{i.bill_date}}</td>-->
+<!--    <td>{{i.bill_no}}</td>-->
     <td>{{i.bill_start_date}}</td>
     <td>{{i.bill_end_date}}</td>
-    <td>{{i.bill_due_date}}</td>
+<!--    <td>{{i.bill_due_date}}</td>-->
     <td>{{i.amount}}</td>
     <td><a href="{% url 'admin_view_bill' i.id %}">bill</a></td>
        <td>
@@ -44,7 +57,7 @@
     <button class="btn-sm btn btn-success">Paid</button>
     {% endif %}
 </td>
-<td><a href="{% url 'payment_delete' i.id %}">delete</a></td>
+<td><a class='btn-sm btn btn-danger' href="{% url 'payment_delete' i.id %}">delete</a></td>
   </tr>
   </tbody>
   {% endfor %}

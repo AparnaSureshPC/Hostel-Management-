@@ -1,6 +1,19 @@
 {% extends 'parent_page.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<style>
+    .table {
+        font-size: 15px;
+    }
+
+
+    .table td {
+        max-width: 15px; /* Set the max-width to control when text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word;white-space:normal;
+    }
+
+</style>
 <script>
     window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -34,7 +47,12 @@
   <tr class="table-secondary">
     <td>{{i.date}}</td>
     <td>{{i.complaint}}</td>
-    <td>{{i.reply}}</td>
+     <td >{% if i.reply == None %}
+    <p>No Reply Yet...</p>
+      {% else %}
+      {{i.reply}}
+      {% endif %}
+    </td>
   </tr>
   {% endfor %}
   </tbody>

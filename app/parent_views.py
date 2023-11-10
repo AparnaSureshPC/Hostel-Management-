@@ -1,3 +1,5 @@
+import datetime
+
 import stripe
 from django.conf import settings
 from django.contrib import messages
@@ -12,7 +14,18 @@ from app.models import Hostel, Attendance, Parent, BookRoom, Student, Warden, Co
 
 
 def parent_card(request):
-    return render(request, 'parent/card.html')
+    parent = Parent.objects.get(user=request.user)
+    payments = Payment.objects.filter(student=parent.student_name, status=0)
+    overdue_payments_exist = False
+    for payment in payments:
+        if payment.bill_due_date > datetime.date.today():
+            overdue_payments_exist = True
+            break
+
+    context = {
+        'overdue_payments_exist': overdue_payments_exist
+    }
+    return render(request, 'parent/card.html', context)
 
 
 def view_hostel_details(request):
@@ -22,8 +35,8 @@ def view_hostel_details(request):
 
 def parent_view_attendance(request):
     parent = Parent.objects.get(user=request.user)
-    attendance = Attendance.objects.filter(student=parent.student_name)
-    return render(request, 'parent/view_attendance.html', {'attendance': attendance})
+    data = Attendance.objects.filter(student=parent.student_name)
+    return render(request, 'parent/view_attendance.html', {'data': data})
 
 
 def parent_book_room(request):
@@ -35,9 +48,11 @@ def parent_book_room(request):
             book = form.save(commit=False)
             book.student = parent.student_name
             book.booked_by = request.user
-            student_qs = BookRoom.objects.filter(student=parent.student_name)
-            if student_qs.exists():
+            booking = BookRoom.objects.filter(student=parent.student_name).last()
+            if booking.status == 0 or booking.status == 1:
                 messages.info(request, 'Already Booked')
+            elif book.booking_date <= datetime.date.today():
+                messages.info(request, 'Invalid booking date')
             else:
                 book.save()
                 messages.info(request, 'Successfully Booked')
@@ -46,7 +61,8 @@ def parent_book_room(request):
 
 
 def parent_booking_status(request):
-    data = BookRoom.objects.filter(booked_by=request.user)
+    parent = Parent.objects.get(user=request.user)
+    data = BookRoom.objects.filter(student=parent.student_name).last()
     return render(request, 'parent/booking_status.html', {'data': data})
 
 
@@ -119,7 +135,7 @@ def parent_reviews_delete(request, id):
 def parent_student_inout(request):
     parent = Parent.objects.get(user=request.user)
     student = parent.student_name
-    inout = InOut.objects.filter(student=student)
+    inout = InOut.objects.filter(student=student).order_by('-date')
     return render(request, 'parent/student_inout.html', {'inout': inout})
 
 
@@ -186,5 +202,5 @@ def pay_cancelled(request):
     return render(request, 'parent/payment_failed.html')
 
 
-def success_return(request):
+def payment_success_return(request):
     return redirect('parent_card')

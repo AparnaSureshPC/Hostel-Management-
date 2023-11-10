@@ -1,6 +1,41 @@
 {% extends 'admin_page.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<style>
+    .table {
+        font-size: 15px;
+    }
+
+
+    .table td {
+        max-width: 15px; /* Set the max-width to control when text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word;white-space:normal;
+    }
+</style>
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+
+}, 4000);
+
+
+</script>
+
+ <div class="column">
+     <div class="col-lg-12">
+         {% for i in messages %}
+         <div class="alert alert-info" role="alert" id="alert">
+             {{i}}
+         </div>
+         {% endfor %}
+     </div>
+
+ </div>
+<div style="background-color:#4B49AC;height:50px"><p style="padding-top:14px;padding-left:5px;color:#ffffff;font-family: 'Nunito', sans-serif;
+    font-weight: 500;    font-size: 1rem;">Staff Members</p></div>
 <table  class="table table-hover" style="font-size:15px">
  <thead>
     <tr class="table-light">
@@ -25,7 +60,7 @@
      <td>{{i.phone_no}}</td>
      <td><img src="{{i.photo.url}}"></td>
      <td>{{i.Date_of_joining}}</td>
-     <td><a href="{% url 'update_warden' i.user_id %}" class=" btn-sm btn btn-success">update</a></td>
+     <td><a href="{% url 'update_warden' i.user_id %}" class=" btn-sm btn btn-primary">update</a></td>
      <td>
          <form action="{% url 'delete_warden' i.user_id %}" method="post">
              {% csrf_token %}

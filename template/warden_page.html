@@ -124,10 +124,10 @@ width: 40rem;margin:auto;margin-top:30px}
               <img src="{{request.user.warden.photo.url}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
-                Settings
-              </a>
+<!--              <a class="dropdown-item">-->
+<!--                <i class="ti-settings text-primary"></i>-->
+<!--                Settings-->
+<!--              </a>-->
               <a class="dropdown-item"  href="{% url 'log_out' %}">
                 <i class="ti-power-off text-primary"></i>
                 Logout
@@ -326,19 +326,32 @@ width: 40rem;margin:auto;margin-top:30px}
               <span class="menu-title">Warden</span>
             </a>
           </li>
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">-->
-<!--              <i class="icon-layout menu-icon"></i>-->
-<!--              <span class="menu-title">Hostel Details </span>-->
-<!--              <i class="menu-arrow"></i>-->
-<!--            </a>-->
-<!--            <div class="collapse" id="ui-basic">-->
-<!--              <ul class="nav flex-column sub-menu">-->
-<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'view_warden_hostel' %}" >View</a></li>-->
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#hostel" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Hostel</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="hostel">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'view_warden_hostel' %}" >View</a></li>
 
-<!--              </ul>-->
-<!--            </div>-->
-<!--          </li>-->
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Food</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'view_warden_food' %}" >View</a></li>
+
+              </ul>
+            </div>
+          </li>
              <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#inout" aria-controls="inout" >
               <i class="icon-paper menu-icon"></i>
@@ -378,20 +391,20 @@ width: 40rem;margin:auto;margin-top:30px}
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="icon-grid-2 menu-icon"></i>
-              <span class="menu-title">Fee</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="tables">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/tables/basic-table.html' %}">Fee Remainder</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% static 'static_dashboard/pages/forms/basic_elements.html' %}">Add Fee</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% static 'static_dashboard/pages/forms/basic_elements.html' %}">View</a></li>
-              </ul>
-            </div>
-          </li>
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">-->
+<!--              <i class="icon-grid-2 menu-icon"></i>-->
+<!--              <span class="menu-title">Fee</span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse" id="tables">-->
+<!--              <ul class="nav flex-column sub-menu">-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/tables/basic-table.html' %}">Fee Remainder</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="{% static 'static_dashboard/pages/forms/basic_elements.html' %}">Add Fee</a></li>-->
+<!--                <li class="nav-item"><a class="nav-link" href="{% static 'static_dashboard/pages/forms/basic_elements.html' %}">View</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </li>-->
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
               <i class="icon-contract menu-icon"></i>
@@ -400,36 +413,36 @@ width: 40rem;margin:auto;margin-top:30px}
             </a>
             <div class="collapse" id="icons">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/icons/mdi.html' %}">View</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'view_payments' %}">View</a></li>
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Notifications </span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'add_notifications' %}"> Add </a></li>-->
-                <li class="nav-item"> <a class="nav-link" href="{% url 'view_notifications' %}"> View </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-              <i class="icon-ban menu-icon"></i>
-              <span class="menu-title">Attendance</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="error">
-              <ul class="nav flex-column sub-menu">
-<!--                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/samples/error-404.html' %}"> Add </a></li>-->
-                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/samples/error-500.html' %}"> View </a></li>
-              </ul>
-            </div>
-          </li>
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">-->
+<!--              <i class="icon-paper menu-icon"></i>-->
+<!--              <span class="menu-title">Notifications </span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse" id="auth">-->
+<!--              <ul class="nav flex-column sub-menu">-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="{% url 'add_notifications' %}"> Add </a></li>&ndash;&gt;-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'view_notifications' %}"> View </a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">-->
+<!--              <i class="icon-ban menu-icon"></i>-->
+<!--              <span class="menu-title">Attendance</span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse" id="error">-->
+<!--              <ul class="nav flex-column sub-menu">-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/samples/error-404.html' %}"> Add </a></li>&ndash;&gt;-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/samples/error-500.html' %}"> View </a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </li>-->
            <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#parent" aria-controls="parent" >
               <i class="icon-head menu-icon"></i>
@@ -463,7 +476,7 @@ width: 40rem;margin:auto;margin-top:30px}
             </a>
             <div class="collapse" id="booking" >
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'static_dashboard/pages/samples/login.html' %}"> View </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'view_bookings' %}"> View </a></li>
 
               </ul>
             </div>
@@ -471,12 +484,12 @@ width: 40rem;margin:auto;margin-top:30px}
          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" aria-expanded="false" href="#reviews" aria-controls="reviews" >
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Reviews</span>
+              <span class="menu-title">Account</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="reviews" >
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> View </a></li>
+                <li class="nav-item"> <a class="nav-link" href='#' data-toggle="modal" data-target="#myModal"> Delete </a></li>
 
               </ul>
             </div>
@@ -497,6 +510,30 @@ width: 40rem;margin:auto;margin-top:30px}
 <!--                </div>-->
 <!--                  </div>-->
 <!--                    </div>-->
+              <div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+<!--        <div class="modal-header border-0">-->
+<!--          <h4 class="modal-title">Delete Confirmation</h4>-->
+<!--        </div>-->
+        <div class="modal-body p-0">
+          <p class='pt-4 pl-3'>Are you sure you want to delete the account?</p>
+        </div>
+        <div class="modal-footer border-0 ">
+<!--          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        <a href="{% url 'delete_account' %}" class="btn-sm btn btn-danger">Delete</a>
+        <button type="button" class="btn-sm btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
           {% block content %}
           {% endblock %}
